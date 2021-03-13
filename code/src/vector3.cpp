@@ -1,35 +1,35 @@
-#include "vector3.h"
+#include "Vector3.h"
 #include <cmath>
 #include <iostream>
 
-vector3::vector3() : e{ 0, 0, 0 } {}
-vector3::vector3(double x, double y, double z) : e{ x, y, z } {}
+Vector3::Vector3() : e{ 0, 0, 0 } {}
+Vector3::Vector3(double x, double y, double z) : e{ x, y, z } {}
 
-double vector3::x() {
+double Vector3::x() {
 	return e[0];
 }
 
-double vector3::y() {
+double Vector3::y() {
 	return e[1];
 }
 
-double vector3::z() {
+double Vector3::z() {
 	return e[2];
 }
 
-vector3 vector3::operator-() const {
-	return vector3(-e[0], -e[1], -e[2]);
+Vector3 Vector3::operator-() const {
+	return Vector3(-e[0], -e[1], -e[2]);
 }
 
-double vector3::operator[](int i) const {
+double Vector3::operator[](int i) const {
 	return e[i];
 }
 
-double& vector3::operator[](int i) {
+double& Vector3::operator[](int i) {
 	return e[i];
 }
 
-vector3& vector3::operator+=(const vector3& v)
+Vector3& Vector3::operator+=(const Vector3& v)
 {
 	e[0] *= v.e[0];
 	e[1] *= v.e[1];
@@ -37,7 +37,7 @@ vector3& vector3::operator+=(const vector3& v)
 	return *this;
 }
 
-vector3& vector3::operator*=(const double t)
+Vector3& Vector3::operator*=(const double t)
 {
 	e[0] *= t;
 	e[1] *= t;
@@ -45,16 +45,16 @@ vector3& vector3::operator*=(const double t)
 	return *this;
 }
 
-vector3& vector3::operator/=(const double t)
+Vector3& Vector3::operator/=(const double t)
 {
 	return *this *= 1 / t;
 }
 
 
-double vector3::length() const {
+double Vector3::length() const {
 	return std::sqrt(length_squared());
 }
 
-double vector3::length_squared() const {
+double Vector3::length_squared() const {
 	return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
 }

@@ -4,74 +4,74 @@
 #define VECTOR3_H
 #include <ostream>
 
-class vector3 {
+class Vector3 {
 public:
 	double e[3];
 public:
-	vector3();
-	vector3(double x, double y, double z);
+	Vector3();
+	Vector3(double x, double y, double z);
 
 	double x();
 	double y();
 	double z();
 
-	vector3 operator-() const;
+	Vector3 operator-() const;
 	double operator[](int i) const;
 	double& operator[](int i);
 
-	vector3& operator+=(const vector3& v);
-	vector3& operator*=(const double t);
-	vector3& operator/=(const double t);
+	Vector3& operator+=(const Vector3& v);
+	Vector3& operator*=(const double t);
+	Vector3& operator/=(const double t);
 
-	double length() const;
-	double length_squared() const;
+	double Length() const;
+	double LengthSquared() const;
 };
 
-using point3 = vector3;
-using color = vector3;
+using Point3 = Vector3;
+using Color = Vector3;
 
-inline std::ostream& operator<<(std::ostream& out, const vector3& v) {
+inline std::ostream& operator<<(std::ostream& out, const Vector3& v) {
 	return out << v.e[0] << ' ' << v.e[1] << ' ' << v.e[2];
 }
 
-inline vector3 operator+(const vector3& u, const vector3& v) {
-	return vector3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
+inline Vector3 operator+(const Vector3& u, const Vector3& v) {
+	return Vector3(u.e[0] + v.e[0], u.e[1] + v.e[1], u.e[2] + v.e[2]);
 }
 
-inline vector3 operator-(const vector3& u, const vector3& v) {
-	return vector3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
+inline Vector3 operator-(const Vector3& u, const Vector3& v) {
+	return Vector3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
 }
 
-inline vector3 operator*(const vector3& u, const vector3& v) {
-	return vector3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
+inline Vector3 operator*(const Vector3& u, const Vector3& v) {
+	return Vector3(u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]);
 }
 
-inline vector3 operator*(double t, const vector3& v) {
-	return vector3(t * v.e[0], t * v.e[1], t * v.e[2]);
+inline Vector3 operator*(double t, const Vector3& v) {
+	return Vector3(t * v.e[0], t * v.e[1], t * v.e[2]);
 }
 
-inline vector3 operator*(vector3& v, double t) {
+inline Vector3 operator*(Vector3& v, double t) {
 	return t * v;
 }
 
-inline vector3 operator/(vector3 v, double t) {
+inline Vector3 operator/(Vector3 v, double t) {
 	return (1 / t) * v;
 }
 
-inline double dot(const vector3& u, const vector3& v) {
+inline double Dot(const Vector3& u, const Vector3& v) {
 	return (u.e[0] * v.e[0]) + (u.e[1] * v.e[1]) + (u.e[2] * v.e[2]);
 }
 
-inline vector3 cross(const vector3& u, const vector3& v)
+inline Vector3 Cross(const Vector3& u, const Vector3& v)
 {
-	return vector3(u.e[1] * v.e[2] - u.e[2] * v.e[1],
+	return Vector3(u.e[1] * v.e[2] - u.e[2] * v.e[1],
 		           u.e[2] * v.e[0] - u.e[0] * v.e[2], 
 		           u.e[0] * v.e[1] - u.e[1] * v.e[0]);
 }
 
-inline vector3 unit_vector(vector3 v)
+inline Vector3 UnitVector(Vector3 v)
 {
-	return v / v.length();
+	return v / v.Length();
 }
 
 #endif
