@@ -19,7 +19,7 @@ public:
 	double operator[](int i) const;
 	double& operator[](int i);
 
-	vector3& operator +=(const vector3& v);
+	vector3& operator+=(const vector3& v);
 	vector3& operator*=(const double t);
 	vector3& operator/=(const double t);
 
