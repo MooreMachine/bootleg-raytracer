@@ -17,6 +17,7 @@ double Vector3::z() {
 	return e[2];
 }
 
+
 Vector3 Vector3::operator-() const {
 	return Vector3(-e[0], -e[1], -e[2]);
 }
@@ -51,10 +52,10 @@ Vector3& Vector3::operator/=(const double t)
 }
 
 
-double Vector3::length() const {
-	return std::sqrt(length_squared());
+double Vector3::Length() const {
+	return std::sqrt(LengthSquared());
 }
 
-double Vector3::length_squared() const {
+double Vector3::LengthSquared() const {
 	return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
 }
