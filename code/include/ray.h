@@ -4,14 +4,13 @@
 #define RAY_H
 #include "vector3.h"
 
-class ray
-{
+class Ray {
 public:
 	Point3 origin;
 	Vector3 direction;
 
-	ray() {}
-	ray(const Point3& origin, const Vector3& direction) : origin(origin), direction(direction) {}
+	Ray() {}
+	Ray(const Point3& origin, const Vector3& direction) : origin(origin), direction(direction) {}
 
 	Point3 get_origin() const;
 	Vector3 get_direction() const;
