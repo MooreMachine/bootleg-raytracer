@@ -1,10 +1,10 @@
 #include "ray.h"
 
-Point3 Ray::get_origin() const {
+Point3 Ray::getOrigin() const {
 	return origin;
 }
 
-Vector3 Ray::get_direction() const {
+Vector3 Ray::getDirection() const {
 	return direction;
 }
 
