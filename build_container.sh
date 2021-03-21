@@ -3,11 +3,13 @@
 VERSION=$(cat README.md | grep "Version" | awk '{print $2}')
 OLD_VERSION=$VERSION
 
-CHANGED=$(git diff --name-only Dockerfile)
+CHANGED_DOCKER=$(git diff --name-only Dockerfile)
+CHANGED_README=$(git diff --name-only README.md)
 
-if [ ! -z ${CHANGED} ]
+# if your Dockerfile changed but your README.md hasn't been updated
+if [ ! -z ${CHANGED_DOCKER} ] && [ -z ${CHANGED_README} ]
 then
-    printf 'Please update the version number.\nCurrent version: %s\n' "$VERSION"
+    printf 'Please consider updating the version number.\nCurrent version: %s\n' "$VERSION"
     read -p "New version: " NEW_VERSION
     if [ ! -z ${NEW_VERSION} ]
     then
