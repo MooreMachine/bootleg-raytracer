@@ -17,6 +17,7 @@ set(SOURCE_FILES
 
 set(TEST_FILES
                     tests/hellotest.cpp
+                    tests/test_rtweekend.cpp
     )
 
 add_executable(raytracer ${SOURCE_FILES})
@@ -25,4 +26,4 @@ target_include_directories(raytracer PRIVATE ${INCLUDE_DIRS})
 
 add_executable(hellotest ${TEST_FILES})
 target_link_libraries(hellotest gtest)
-
+target_include_directories(hellotest PRIVATE ${INCLUDE_DIRS})
