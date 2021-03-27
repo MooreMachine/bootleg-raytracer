@@ -25,3 +25,24 @@ TEST(TestUtils, TestRandomDoubleMinToMax) {
     // Verify that random_double returns a number smaller than max
     ASSERT_LT(random_double(min, max), max);
 }
+
+TEST(TestUtils, TestClampMin) {
+    double x = 5;
+    double min = 10;
+    double max = 20;
+    ASSERT_EQ(clamp(x, min, max), min);
+}
+
+TEST(TestUtils, TestClampMax) {
+    double x = 25;
+    double min = 10;
+    double max = 20;
+    ASSERT_EQ(clamp(x, min, max), max);
+}
+
+TEST(TestUtils, TestClampBetween) {
+    double x = 15;
+    double min = 10;
+    double max = 20;
+    ASSERT_EQ(clamp(x, min, max), x);
+}
