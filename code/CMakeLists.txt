@@ -11,6 +11,13 @@ set(INCLUDE_DIRS
                     include
     )
 
+set(LIB_FILES   lib/ray.cpp
+                lib/vector3.cpp)
+
+add_library(raytracerlib ${LIB_FILES})
+target_compile_options(raytracerlib PRIVATE -Wall -Werror -Wextra -pedantic)
+target_include_directories(raytracerlib PRIVATE ${INCLUDE_DIRS})
+
 set(SOURCE_FILES
                     src/main.cpp
     )
@@ -22,6 +29,7 @@ set(TEST_FILES
 add_executable(raytracer ${SOURCE_FILES})
 target_compile_options(raytracer PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(raytracer PRIVATE ${INCLUDE_DIRS})
+target_link_libraries(raytracer raytracerlib)
 
 add_executable(hellotest ${TEST_FILES})
 target_link_libraries(hellotest gtest)
