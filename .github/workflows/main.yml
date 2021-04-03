@@ -21,11 +21,15 @@ jobs:
       id: build_failure
       if: ${{ steps.build_tests.outputs.build_result != 0 }}
       run: echo "Something went wrong while building. Exit status ${{ steps.build_tests.outputs.build_result }}."
+    - name: Report run failure
+      id: run_failure
+      if: ${{ steps.build_tests.outputs.quick_run_result != 0 }}
+      run: echo "Something went wrong while running the app. Exit status ${{ steps.build_tests.outputs.quick_run_result }}."
     - name: Exit due to failure
       id: early_exit
-      if: ${{ steps.build_tests.outputs.build_result != 0 }}
-      run: echo "Build error ${{ steps.build_tests.outputs.build_result != 0 }}." && exit 1
+      if: ${{ steps.build_tests.outputs.build_result != 0 || steps.build_tests.outputs.quick_run_result != 0}}
+      run: echo "Build error ${{ steps.build_tests.outputs.build_result }}.\nRun error ${{ steps.build_tests.outputs.quick_run_result }}" && exit 1
     - name: Report success
       id: success
-      if: ${{ steps.build_tests.outputs.build_result == 0 }}
-      run: echo "Build result ${{ steps.build_tests.outputs.build_result }}"
+      if: ${{ steps.build_tests.outputs.build_result == 0 && steps.build_tests.outputs.quick_run_result == 0}}
+      run: echo "Build test passed."
