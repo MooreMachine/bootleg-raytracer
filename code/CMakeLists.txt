@@ -23,7 +23,7 @@ set(SOURCE_FILES
     )
 
 set(TEST_FILES
-                    tests/hellotest.cpp
+                    tests/unit_tests.cpp
                     tests/test_rtweekend.cpp
     )
 
