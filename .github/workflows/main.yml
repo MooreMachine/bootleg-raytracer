@@ -28,7 +28,7 @@ jobs:
     - name: Exit due to failure
       id: early_exit
       if: ${{ steps.build_tests.outputs.build_result != 0 || steps.build_tests.outputs.quick_run_result != 0}}
-      run: echo "Build error ${{ steps.build_tests.outputs.build_result }}.\nRun error ${{ steps.build_tests.outputs.quick_run_result }}" && exit 1
+      run: echo -e "Build error ${{ steps.build_tests.outputs.build_result }}.\nRun error ${{ steps.build_tests.outputs.quick_run_result }}" && exit 1
     - name: Report success
       id: success
       if: ${{ steps.build_tests.outputs.build_result == 0 && steps.build_tests.outputs.quick_run_result == 0}}
