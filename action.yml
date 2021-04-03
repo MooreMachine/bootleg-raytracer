@@ -1,5 +1,5 @@
-name: 'Build tests'
-description: 'Run build tests'
+name: 'All tests'
+description: 'Run build and unit tests'
 outputs:
   build_result:
     description: 'The status of the build process'
@@ -7,6 +7,8 @@ outputs:
   quick_run_result:
     description: 'The exit status of the executable'
     value: ${{ steps.tests.outputs.quick_run_result }}
+  build_unit_tests_result:
+    value: ${{ steps.tests.outputs.build_unit_tests_result}}
 runs:
   using: 'composite'
   steps:
