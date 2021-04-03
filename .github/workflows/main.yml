@@ -5,25 +5,25 @@ on:
 
 jobs:
   main_job:
-  runs-on: ubuntu-18.04
-  name: Tests
-  steps:
-  - uses: actions/checkout@v2
-    with:
-      submodules: recursive
-  - name: Build Tests
-    id: build_tests
-    # Use action in root directory
-    uses: ./
-  - name: Report build failure
-    id: build_failure
-    if: ${{ steps.build_tests.outputs.build_result != 0 }}
-    run: echo "Something went wrong while building. Exit status ${{ steps.build_tests.outputs.build_result }}."
-  - name: Exit due to failure
-    id: early_exit
-    if: ${{ steps.build_tests.outputs.build_result != 0 }}
-    run: echo "Build error ${{ steps.build_tests.outputs.build_result != 0 }}." && exit 1
-  - name: Report success
-    id: success
-    if: ${{ steps.build_tests.outputs.build_result == 0 }}
-    run: echo "Build result ${{ steps.build_tests.outputs.build_result }}"
+    runs-on: ubuntu-18.04
+    name: Tests
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Build Tests
+      id: build_tests
+      # Use action in root directory
+      uses: ./
+    - name: Report build failure
+      id: build_failure
+      if: ${{ steps.build_tests.outputs.build_result != 0 }}
+      run: echo "Something went wrong while building. Exit status ${{ steps.build_tests.outputs.build_result }}."
+    - name: Exit due to failure
+      id: early_exit
+      if: ${{ steps.build_tests.outputs.build_result != 0 }}
+      run: echo "Build error ${{ steps.build_tests.outputs.build_result != 0 }}." && exit 1
+    - name: Report success
+      id: success
+      if: ${{ steps.build_tests.outputs.build_result == 0 }}
+      run: echo "Build result ${{ steps.build_tests.outputs.build_result }}"
