@@ -1,0 +1,12 @@
+name: 'Build tests'
+description: 'Run build tests'
+outputs:
+  build_result:
+    description: 'The status of the build process'
+    value: ${{ steps.tests.outputs.build_result }}
+runs:
+  using: 'composite'
+  steps:
+    - id: tests
+      run: ./execute_tests.sh
+      shell: bash
