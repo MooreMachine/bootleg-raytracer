@@ -30,13 +30,14 @@ jobs:
       if: ${{ steps.build_tests.outputs.build_unit_tests_result != 0 }}
       run: echo "Something went wrong while building the unit tests. Exit status ${{ steps.build_tests.outputs.build_unit_tests_result }}."
     - name: Exit due to failure
-      id: early_exit
-      if: |
-        ${{ steps.build_tests.outputs.build_result != 0 || 
-        steps.build_tests.outputs.quick_run_result != 0 || 
-        steps.build_tests.outputs.build_unit_tests_result != 0 }}
+      if: ${{ steps.build_tests.outputs.build_result != 0 }}
+      run: exit 1
+    - name: Exit due to failure
+      if: ${{ steps.build_tests.outputs.quick_run_result != 0 }}
+      run: exit 1
+    - name: Exit due to failure
+      if: ${{ steps.build_tests.outputs.build_unit_tests_result != 0 }}
       run: exit 1
     - name: Report success
       id: success
-      if: ${{ steps.build_tests.outputs.build_result == 0 && steps.build_tests.outputs.quick_run_result == 0}}
       run: echo "Build test passed."
