@@ -4,6 +4,9 @@ outputs:
   build_result:
     description: 'The status of the build process'
     value: ${{ steps.tests.outputs.build_result }}
+  quick_run_result:
+    description: 'The exit status of the executable'
+    value: ${{ steps.tests.outputs.quick_run_result }}
 runs:
   using: 'composite'
   steps:
