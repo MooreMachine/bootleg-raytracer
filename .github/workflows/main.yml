@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - automated-tests
+      - simulate_failure
 
 name: Build
 
