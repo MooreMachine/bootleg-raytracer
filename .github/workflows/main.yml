@@ -3,6 +3,8 @@ on:
     branches:
       - automated-tests
 
+name: Build
+
 jobs:
   main_job:
     runs-on: ubuntu-18.04
