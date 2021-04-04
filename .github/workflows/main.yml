@@ -3,41 +3,41 @@ on:
     branches:
       - automated-tests
 
-name: Build
+name: Tests
 
 jobs:
   main_job:
     runs-on: ubuntu-18.04
-    name: Tests
+    name: Tests Job
     steps:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
-    - name: Build Tests
-      id: build_tests
+    - name: All Tests
+      id: all_tests
       # Use action in root directory
       uses: ./
     - name: Report build failure
       id: build_failure
-      if: ${{ steps.build_tests.outputs.build_result != 0 }}
-      run: echo "Something went wrong while building. Exit status ${{ steps.build_tests.outputs.build_result }}."
+      if: ${{ steps.all_tests.outputs.build_result != 0 }}
+      run: echo "Something went wrong while building the app. Exit status ${{ steps.all_tests.outputs.build_result }}."
     - name: Report run failure
       id: run_failure
-      if: ${{ steps.build_tests.outputs.quick_run_result != 0 }}
-      run: echo "Something went wrong while running the app. Exit status ${{ steps.build_tests.outputs.quick_run_result }}."
+      if: ${{ steps.all_tests.outputs.quick_run_result != 0 }}
+      run: echo "Something went wrong while running the app. Exit status ${{ steps.all_tests.outputs.quick_run_result }}."
     - name: Report unit tests build failure
       id: unit_tests_build_failure
-      if: ${{ steps.build_tests.outputs.build_unit_tests_result != 0 }}
-      run: echo "Something went wrong while building the unit tests. Exit status ${{ steps.build_tests.outputs.build_unit_tests_result }}."
+      if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
+      run: echo "Something went wrong while building the unit tests. Exit status ${{ steps.all_tests.outputs.build_unit_tests_result }}."
     - name: Exit due to failure
-      if: ${{ steps.build_tests.outputs.build_result != 0 }}
+      if: ${{ steps.all_tests.outputs.build_result != 0 }}
       run: exit 1
     - name: Exit due to failure
-      if: ${{ steps.build_tests.outputs.quick_run_result != 0 }}
+      if: ${{ steps.all_tests.outputs.quick_run_result != 0 }}
       run: exit 1
     - name: Exit due to failure
-      if: ${{ steps.build_tests.outputs.build_unit_tests_result != 0 }}
+      if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
       run: exit 1
     - name: Report success
       id: success
-      run: echo "Build test passed."
+      run: echo "All tests passed."
