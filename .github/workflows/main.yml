@@ -29,13 +29,13 @@ jobs:
       id: unit_tests_build_failure
       if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
       run: echo "Something went wrong while building the unit tests. Exit status ${{ steps.all_tests.outputs.build_unit_tests_result }}."
-    - name: Exit due to failure
+    - name: Exit due to app build failure
       if: ${{ steps.all_tests.outputs.build_result != 0 }}
       run: exit 1
-    - name: Exit due to failure
+    - name: Exit due to app run failure
       if: ${{ steps.all_tests.outputs.quick_run_result != 0 }}
       run: exit 1
-    - name: Exit due to failure
+    - name: Exit due to uni tests build failure
       if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
       run: exit 1
     - name: Report success
