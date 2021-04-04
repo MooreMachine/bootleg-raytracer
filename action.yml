@@ -9,7 +9,10 @@ outputs:
     value: ${{ steps.tests.outputs.quick_run_result }}
   build_unit_tests_result:
     description: 'The status of the unit tests build process'
-    value: ${{ steps.tests.outputs.build_unit_tests_result}}
+    value: ${{ steps.tests.outputs.build_unit_tests_result }}
+  run_unit_tests_result:
+    description: 'The status of the unit tests'
+    value: ${{ steps.tests.outputs.run_unit_tests_result }}
 runs:
   using: 'composite'
   steps:

@@ -3,4 +3,4 @@
 mkdir -p build
 cd build
 cmake ..
-make hellotest
+make raytracer_tests

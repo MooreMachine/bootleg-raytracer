@@ -39,6 +39,13 @@ docker exec \
     build_test \
     sh -c './build_unit_tests.sh; echo "::set-output name=build_unit_tests_result::$?"'
 
+echo "Running unit tests..."
+
+docker exec \
+    -w '/home' \
+    build_test \
+    sh -c './build/raytracer_tests; echo "::set-output name=run_unit_tests_result::$?"'
+
 echo "Stopping container..."
 
 docker container stop -t 0 $CONTAINER_ID
