@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - automated-tests
+      - simulate_unit_test_error
 
 name: Tests
 
