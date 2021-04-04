@@ -7,7 +7,7 @@ TEST(TestUtils, TestPi) {
 
 TEST(TestUtils, TestDegreesToRadians) {
     double test_value = 180 / pi;
-    ASSERT_DOUBLE_EQ(DegreesToRadians(test_value), 1);
+    ASSERT_DOUBLE_EQ(DegreesToRadians(test_value), 2);
 }
 
 TEST(TestUtils, TestRandomDoubleZeroToOne) {
