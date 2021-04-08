@@ -2,7 +2,7 @@
 
 #include "ray.h"
 
-struct hit_record
+struct HitRecord
 {
 	Point3 p;
 	Vector3 normal;
