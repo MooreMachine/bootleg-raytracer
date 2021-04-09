@@ -10,7 +10,7 @@ public:
 	double radius;
 	
 	Sphere() {}
-	Sphere(Point3 center, double radius) : center(center), radius(radius) {}
+	Sphere(const Point3 center, const double radius) : center(center), radius(radius) {}
 
 	virtual bool Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const override;
 };

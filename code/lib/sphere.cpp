@@ -2,16 +2,16 @@
 
 bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const
 {
-    Vector3 origin_center = ray.getOrigin() - center;
-    auto a = ray.getDirection().LengthSquared();
-    auto b = Dot(origin_center, ray.getDirection());
-    auto c = origin_center.LengthSquared() - std::pow(radius, 2);
+    const Vector3 origin_center = ray.getOrigin() - center;
+    const double a = ray.getDirection().LengthSquared();
+    const double b = Dot(origin_center, ray.getDirection());
+    const double c = origin_center.LengthSquared() - std::pow(radius, 2);
 	
-    auto discriminant = std::pow(b, 2) - a * c;
+    const double discriminant = std::pow(b, 2) - a * c;
     if (discriminant < 0) return false;
-    auto squared_discriminant = sqrt(discriminant);
+    const double squared_discriminant = sqrt(discriminant);
 	
-    auto root = (b - squared_discriminant) / a;
+    double root = (b - squared_discriminant) / a;
 	if (root < t_min || t_max < root) {
 		root(-b + squared_discriminant) / a;
 		if (root < t_min || t_max < root) {
