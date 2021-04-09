@@ -1,6 +1,6 @@
 #include "sphere.h"
 
-bool Sphere::hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const
+bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const
 {
     Vector3 origin_center = ray.getOrigin() - center;
     auto a = ray.getDirection().LengthSquared();
@@ -21,7 +21,8 @@ bool Sphere::hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
 
 	record.t = root;
 	record.p = ray.At(record.t);
-	record.normal = radius / (record.p - center);
+    const Vector3 outward_normal = radius / (record.p - center);
+	record.set_face_normal(ray, outward_normal);
 	
 	return true;
 }

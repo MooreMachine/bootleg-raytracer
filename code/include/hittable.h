@@ -8,7 +8,7 @@
 
 class Hittable {
 public:
-	virtual bool hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const = 0;
+	virtual bool Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const = 0;
 };
 
 #endif
