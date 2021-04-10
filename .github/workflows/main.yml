@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Tests
+
+jobs:
+  main_job:
+    runs-on: ubuntu-18.04
+    name: Tests Job
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: All Tests
+      id: all_tests
+      # Use action in root directory
+      uses: ./
+    - name: Report build failure
+      id: build_failure
+      if: ${{ steps.all_tests.outputs.build_result != 0 }}
+      run: echo "Something went wrong while building the app. Exit status ${{ steps.all_tests.outputs.build_result }}."
+    - name: Report run failure
+      id: run_failure
+      if: ${{ steps.all_tests.outputs.quick_run_result != 0 }}
+      run: echo "Something went wrong while running the app. Exit status ${{ steps.all_tests.outputs.quick_run_result }}."
+    - name: Report unit tests build failure
+      id: unit_tests_build_failure
+      if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
+      run: echo "Something went wrong while building the unit tests. Exit status ${{ steps.all_tests.outputs.build_unit_tests_result }}."
+    - name: Report unit tests failure
+      id: unit_tests_run_failure
+      if: ${{ steps.all_tests.outputs.run_unit_tests_result != 0 }}
+      run: echo "Something went wrong while running the unit tests. Exit status ${{ steps.all_tests.outputs.run_unit_tests_result }}."
+    - name: Exit due to app build failure
+      if: ${{ steps.all_tests.outputs.build_result != 0 }}
+      run: exit 1
+    - name: Exit due to app run failure
+      if: ${{ steps.all_tests.outputs.quick_run_result != 0 }}
+      run: exit 1
+    - name: Exit due to unit tests build failure
+      if: ${{ steps.all_tests.outputs.build_unit_tests_result != 0 }}
+      run: exit 1
+    - name: Exit due to unit tests failure
+      if: ${{ steps.all_tests.outputs.run_unit_tests_result != 0 }}
+      run: exit 1
+    - name: Report success
+      id: success
+      run: echo "All tests passed."

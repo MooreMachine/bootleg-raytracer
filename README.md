@@ -1,5 +1,7 @@
 # Bootleg Ray Tracer
-A bootleg ray tracing project by a bunch of mexicans.
+![Tests](https://github.com/MooreMachine/bootleg-raytracer/workflows/Tests/badge.svg)
+
+A bootleg ray tracing project by a bunch of proud Mexicans.
 
 ### About
 

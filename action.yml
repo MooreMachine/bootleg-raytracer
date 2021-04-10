@@ -1,0 +1,21 @@
+name: 'All tests'
+description: 'Run build and unit tests'
+outputs:
+  build_result:
+    description: 'The status of the app build process'
+    value: ${{ steps.tests.outputs.build_result }}
+  quick_run_result:
+    description: 'The exit status of the executable'
+    value: ${{ steps.tests.outputs.quick_run_result }}
+  build_unit_tests_result:
+    description: 'The status of the unit tests build process'
+    value: ${{ steps.tests.outputs.build_unit_tests_result }}
+  run_unit_tests_result:
+    description: 'The status of the unit tests'
+    value: ${{ steps.tests.outputs.run_unit_tests_result }}
+runs:
+  using: 'composite'
+  steps:
+    - id: tests
+      run: ./execute_tests.sh
+      shell: bash
