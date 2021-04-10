@@ -3,10 +3,10 @@
 #ifndef HITTABLE_LIST
 #define HITTABLE_LIST
 
-#include "hittable.h"
-
 #include <memory>
 #include <vector>
+
+#include "hittable.h"
 
 class HittableList : public Hittable {
 public:
