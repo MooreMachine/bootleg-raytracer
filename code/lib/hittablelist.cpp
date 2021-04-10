@@ -1,6 +1,6 @@
 #include "hittablelist.h"
 
-HittableList::HittableList(const std::shared_ptr<Hittable>& object) {
+HittableList::HittableList(std::shared_ptr<Hittable>& object) {
 	Add(object);
 }
 
@@ -8,8 +8,8 @@ void HittableList::Clear() {
 	objects.clear();
 }
 
-void HittableList::Add(const std::shared_ptr<Hittable>& object) {
-	objects.emplace_back(object);
+void HittableList::Add(std::shared_ptr<Hittable>& object) {
+	objects.push_back(object);
 }
 
 bool HittableList::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const {

@@ -7,13 +7,14 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
     const double b = Dot(origin_center, ray.getDirection());
     const double c = origin_center.LengthSquared() - std::pow(radius, 2);
 	
-    const double discriminant = std::pow(b, 2) - a * c;
+    const double discriminant = std::pow(b, 2) - (a * c);
     if (discriminant < 0) return false;
     const double squared_discriminant = sqrt(discriminant);
-	
-    double root = (b - squared_discriminant) / a;
+
+	// Find the nearest root that lies in the acceptable range.
+    double root = (-b - squared_discriminant) / a;
 	if (root < t_min || t_max < root) {
-		root(-b + squared_discriminant) / a;
+		root = (-b + squared_discriminant) / a;
 		if (root < t_min || t_max < root) {
 			return false;
 		}
