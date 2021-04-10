@@ -1,4 +1,7 @@
+#include <cmath>
+
 #include "sphere.h"
+
 
 bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const
 {
