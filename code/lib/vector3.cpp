@@ -32,9 +32,9 @@ double& Vector3::operator[](int i) {
 
 Vector3& Vector3::operator+=(const Vector3& v)
 {
-	e[0] *= v.e[0];
-	e[1] *= v.e[1];
-	e[2] *= v.e[2];
+	e[0] += v.e[0];
+	e[1] += v.e[1];
+	e[2] += v.e[2];
 	return *this;
 }
 
