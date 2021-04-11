@@ -50,7 +50,7 @@ inline Vector3 operator*(double t, const Vector3& v) {
 	return Vector3(t * v.e[0], t * v.e[1], t * v.e[2]);
 }
 
-inline Vector3 operator/(double t, const Vector3& v) {
+inline Vector3 operator/(const Vector3& v, double t) {
 	return (1 / t) * v;
 }
 
@@ -67,7 +67,7 @@ inline Vector3 Cross(const Vector3& u, const Vector3& v)
 
 inline Vector3 UnitVector(const Vector3& v)
 {
-	return v.Length() / v;
+	return v / v.Length();
 }
 
 #endif
