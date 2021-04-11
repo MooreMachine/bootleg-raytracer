@@ -1,4 +1,4 @@
-#include <rtweekend.h>
+#include "rtweekend.h"
 #include <gtest/gtest.h>
 
 TEST(TestUtils, TestPi) {

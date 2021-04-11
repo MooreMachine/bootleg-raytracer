@@ -23,6 +23,7 @@ set(SOURCE_FILES
     )
 
 set(TEST_FILES
+                    tests/test_antialiasing.cpp
                     tests/unit_tests.cpp
                     tests/test_rtweekend.cpp
     )
