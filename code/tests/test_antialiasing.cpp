@@ -1,4 +1,4 @@
-#include "aliasing.h"
+#include "camera.h"
 #include <gtest/gtest.h>
 
 TEST(TestAntialiasing, TestCameraConstructor) {

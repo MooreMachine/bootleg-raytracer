@@ -1,4 +1,4 @@
-#include "aliasing.h"
+#include "camera.h"
 
 Camera::Camera() {
     auto aspect_ratio = 16.0/9.0;
@@ -7,9 +7,9 @@ Camera::Camera() {
     auto focal_length = 1.0;
 
     origin = Point3(0,0,0);
-    horizontal = Vector3(viewport_width, 0.0, 0.0);
-    vertical = Vector3(0,0, viewport_height, 0.0);
-    lower_left_corner = origin - horizontal/2 - vertical/2 - Vector3(0, 0, focal_length);
+    horizontal = Vector3(viewport_width, 0, 0);
+    vertical = Vector3(0, viewport_height, 0);
+    lower_left_corner = origin - (horizontal/2) - (vertical/2) - Vector3(0, 0, focal_length);
 }
 
 Ray Camera::GetRay(double u, double v) const {

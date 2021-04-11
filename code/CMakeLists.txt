@@ -11,7 +11,8 @@ set(INCLUDE_DIRS
                     include
     )
 
-set(LIB_FILES   lib/hittablelist.cpp
+set(LIB_FILES   lib/camera.cpp
+                lib/hittablelist.cpp
                 lib/ray.cpp
                 lib/sphere.cpp
                 lib/vector3.cpp)
