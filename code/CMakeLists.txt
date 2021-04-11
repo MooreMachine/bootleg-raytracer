@@ -11,7 +11,9 @@ set(INCLUDE_DIRS
                     include
     )
 
-set(LIB_FILES   lib/ray.cpp
+set(LIB_FILES   lib/hittablelist.cpp
+                lib/ray.cpp
+                lib/sphere.cpp
                 lib/vector3.cpp)
 
 add_library(raytracerlib ${LIB_FILES})
