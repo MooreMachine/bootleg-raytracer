@@ -1,8 +1,5 @@
 on:
-  push:
-    branches:
-      - master
-      - hittable-rays
+  push
 
 name: Tests
 
