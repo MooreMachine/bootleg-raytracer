@@ -30,7 +30,7 @@ echo "Running app..."
 docker exec \
     -w '/home' \
     build_test \
-    sh -c './build/raytracer > /dev/null 2>&1 ; echo "::set-output name=quick_run_result::$?"'
+    sh -c './build/raytracer > /dev/null ; echo "::set-output name=quick_run_result::$?"'
 
 echo "Building unit tests..."
 
