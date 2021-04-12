@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - master
-      - clean_github_actions_log
 
 name: Tests
 
