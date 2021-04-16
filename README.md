@@ -5,4 +5,4 @@ A bootleg ray tracing project by a bunch of proud Mexicans.
 
 ### About
 
-Version: 0.2.2
+Version: 0.1.0
