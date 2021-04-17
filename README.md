@@ -77,6 +77,12 @@ Our unit tests are automatically run with [GitHub Actions](https://docs.github.c
 
 ### Style
 
+We are trying to follow the naming conventions laid out in the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Naming). The most important rules are:
+
+- Classes use upper `CamelCase`
+- Member functions use upper `CamelCase`
+- Except for _getters_ and _setters_, which use lower `camelCase`
+
 
 ## About
 
