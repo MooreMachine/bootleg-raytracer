@@ -83,6 +83,9 @@ We are trying to follow the naming conventions laid out in the [Google C++ Style
 - Member functions use upper `CamelCase`
 - Except for _getters_ and _setters_, which use lower `camelCase`
 
+## Version control
+
+We intend to use use [semantic versioning 2.0.0](https://semver.org/spec/v2.0.0.html) to keep track of new versions of this repository. Document any official changes in the [CHANGELOG.md](CHANGELOG.md) file.
 
 ## About
 
