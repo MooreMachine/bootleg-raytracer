@@ -87,6 +87,10 @@ We are trying to follow the naming conventions laid out in the [Google C++ Style
 
 We intend to use use [semantic versioning 2.0.0](https://semver.org/spec/v2.0.0.html) to keep track of new versions of this repository. Document any official changes in the [CHANGELOG.md](CHANGELOG.md) file.
 
+### Git
+
+Ideally, the `master` branch should only contain changes that pass all our tests. Most changes should first be pushed to a development branch. I like to name my branches `my_new_branch` because Vim autocompletes strings like that, but not `my-new-branch`.
+
 ## About
 
 Version: 0.1.0
