@@ -1,7 +1,7 @@
 # Bootleg Ray Tracer
 ![Tests](https://github.com/MooreMachine/bootleg-raytracer/workflows/Tests/badge.svg)
 
-A bootleg ray tracing project by a bunch of proud Mexicans.
+A bootleg ray tracing project by a bunch of proud Mexicans. Based on [_Ray Tracing in One Weekend_ ](https://raytracing.github.io/books/RayTracingInOneWeekend.html) (version 3.2.3) by Peter Shirley.
 
 ## Installation
 
