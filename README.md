@@ -69,7 +69,7 @@ TEST(TestSuiteName, TestName) {
 Our unit tests are automatically run with [GitHub Actions](https://docs.github.com/en/actions) whenever we `push` something new to our remote repository. In a nutshell, the workflow is described in [.github/workflows/main.yml](.github/workflows/main.yml) and it consists of multiple steps:
 
 - First, we check out [our repository](https://github.com/MooreMachine/bootleg-raytracer).
-- Then we run all our build and unit tests as described in [actions.yml](actions.yml).
+- Then we run all our build and unit tests as described in [action.yml](action.yml).
 - [execute_tests.sh](execute_tests.sh) will launch a Docker container and build both the application and the unit tests, and run them all.
 - At each step in [execute_tests.sh](execute_tests.sh), the result is assigned to a variable `*_result` which is propagated to the main workflow.
 - [.github/workflows/main.yml](.github/workflows/main.yml) checks these results and reports any failures.
