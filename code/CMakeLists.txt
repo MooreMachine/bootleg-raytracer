@@ -26,7 +26,7 @@ set(SOURCE_FILES
 
 set(TEST_FILES
                     tests/unit_tests.cpp
-                    tests/test_rtweekend.cpp
+                    tests/test_utils.cpp
     )
 
 add_executable(raytracer ${SOURCE_FILES})
