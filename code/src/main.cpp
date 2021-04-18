@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "vector3.h"
+#include "ray.h"
 #include "utils.h"
 #include "hittablelist.h"
 #include "color.h"
