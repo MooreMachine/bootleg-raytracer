@@ -51,6 +51,8 @@ make # if you want to build all previous targets at once
 
 Alternatively, we provide a couple of scripts to this: [build_app.sh](code/build_app.sh) and [build_unit_tests.sh](code/build_unit_tests.sh).
 
+Executables are saved in `build/bin` and libraries are in `build/lib`.
+
 ### Testing
 
 We use [GoogleTest](https://github.com/google/googletest) for our unit tests. [tests/unit_tests.cpp](code/tests/unit_tests.cpp) contains the entry point, `main`, to all our unit tests. If you are creating a new module in [lib](code/lib), add a corresponding test file `tests/test_my_module.cpp`. Add this new file to the list of `TEST_FILES` in [CMakeLists.txt](code/CMakeLists.txt).

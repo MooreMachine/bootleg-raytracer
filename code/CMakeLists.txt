@@ -16,6 +16,7 @@ set(LIB_FILES   lib/hittablelist.cpp
 add_library(raytracerlib ${LIB_FILES})
 target_compile_options(raytracerlib PRIVATE -Wall -Werror -Wextra -pedantic)
 target_include_directories(raytracerlib PRIVATE ${INCLUDE_DIRS})
+set_target_properties(raytracerlib PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 set(SOURCE_FILES
                     src/main.cpp
@@ -25,5 +26,7 @@ add_executable(raytracer ${SOURCE_FILES})
 target_compile_options(raytracer PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(raytracer PRIVATE ${INCLUDE_DIRS})
 target_link_libraries(raytracer raytracerlib)
+
+set_target_properties(raytracer PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 add_subdirectory(tests)
