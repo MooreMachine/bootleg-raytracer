@@ -1,3 +1,5 @@
+#pragma once
+
 #include "hittable.h"
 #include "vector3.h"
 

@@ -1,7 +1,7 @@
 # pragma once
 
-#include "ray.h"
 #include "hitrecord.h"
+#include "ray.h"
 
 class Hittable {
 public:
