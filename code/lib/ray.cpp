@@ -11,4 +11,3 @@ Vector3 Ray::getDirection() const {
 Point3 Ray::At(double t) const {
 	return origin + t * direction;
 }
-
