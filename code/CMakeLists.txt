@@ -4,11 +4,8 @@ project(bootleg-raytracer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(INSTALL_GTEST OFF)
-add_subdirectory(googletest)
-
 set(INCLUDE_DIRS
-                    include
+                    ${PROJECT_SOURCE_DIR}/include
     )
 
 set(LIB_FILES   lib/hittablelist.cpp
@@ -24,16 +21,9 @@ set(SOURCE_FILES
                     src/main.cpp
     )
 
-set(TEST_FILES
-                    tests/unit_tests.cpp
-                    tests/test_utils.cpp
-    )
-
 add_executable(raytracer ${SOURCE_FILES})
 target_compile_options(raytracer PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(raytracer PRIVATE ${INCLUDE_DIRS})
 target_link_libraries(raytracer raytracerlib)
 
-add_executable(raytracer_tests ${TEST_FILES})
-target_link_libraries(raytracer_tests gtest)
-target_include_directories(raytracer_tests PRIVATE ${INCLUDE_DIRS})
+add_subdirectory(tests)
