@@ -30,7 +30,7 @@ set(LIB_FILES
 add_library(raytracerlib ${LIB_FILES})
 target_include_directories(raytracerlib PRIVATE ${INCLUDE_DIRS})
 target_compile_options(raytracerlib PRIVATE -Wall -Werror -Wextra -pedantic)
-set_target_properties(raytracerlib PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
+set_target_properties(raytracerlib PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 ###################
 # Add application #
