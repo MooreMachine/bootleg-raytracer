@@ -5,7 +5,7 @@
 class Vector3 {
 public:
 	double e[3];
-public:
+
 	Vector3();
 	Vector3(double x, double y, double z);
 
