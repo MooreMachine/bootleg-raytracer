@@ -77,11 +77,40 @@ Our unit tests are automatically run with [GitHub Actions](https://docs.github.c
 
 ### Style
 
+#### Naming conventions
+
 We are trying to follow the naming conventions laid out in the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Naming). The most important rules are:
 
 - Classes use upper `CamelCase`
 - Member functions use upper `CamelCase`
 - Except for _getters_ and _setters_, which use lower `camelCase`
+
+#### Sorting header files
+
+Header files should be sorted in the following order:
+
+1. If applicable, `.h` file corresponding to this `.cpp` file
+1. Headers from the same module
+1. Headers from other modules
+1. System headers
+
+Headers in each category should be sorted alphabetically.
+
+Reserve angle brackets (`< >`) for system headers.
+
+For example:
+
+```C++
+#include "my_module.h"
+
+#include "utils.h"
+#include "vector.h"
+
+#include "external/external_module.h"
+
+#include <cmath>
+#include <iostream>
+```
 
 ## Version control
 
