@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef VECTOR3_H
-#define VECTOR3_H
 #include <ostream>
 
 class Vector3 {
@@ -69,5 +67,3 @@ inline Vector3 UnitVector(const Vector3& v)
 {
 	return v / v.Length();
 }
-
-#endif

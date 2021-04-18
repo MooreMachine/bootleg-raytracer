@@ -1,6 +1,3 @@
-#ifndef SPHERE_H
-#define SPHERE_H
-
 #include "hittable.h"
 #include "vector3.h"
 
@@ -14,5 +11,3 @@ public:
 
 	virtual bool Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const override;
 };
-
-#endif

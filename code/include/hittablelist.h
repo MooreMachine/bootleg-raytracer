@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef HITTABLE_LIST
-#define HITTABLE_LIST
-
 #include <memory>
 #include <vector>
 
@@ -19,5 +16,3 @@ public:
 	void Add(std::shared_ptr<Hittable>& object);
 	virtual bool Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const override;
 };
-
-#endif
