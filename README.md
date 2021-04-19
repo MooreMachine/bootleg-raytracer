@@ -120,7 +120,7 @@ We intend to use [semantic versioning 2.0.0](https://semver.org/spec/v2.0.0.html
 
 ### Git
 
-Ideally, the `master` branch should only contain changes that pass all our tests. Most changes should first be pushed to a development branch. I like to name my branches `my_new_branch` because Vim autocompletes strings like that, but not `my-new-branch`.
+Ideally, the `master` branch should only contain changes that pass all our tests. Most changes should be pushed to a development branch first. I like to name my branches `my_new_branch` because Vim autocompletes strings like that, but not `my-new-branch`.
 
 ## About
 
