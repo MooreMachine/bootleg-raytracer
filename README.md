@@ -61,7 +61,7 @@ A basic `test_my_module.cpp` file will include the following boilerplate code:
 
 ```C++
 #include "my_module.h"
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 TEST(TestSuiteName, TestName) {
     // your assertions go here
