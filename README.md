@@ -65,8 +65,14 @@ A basic `test_my_module.cpp` file will include the following boilerplate code:
 
 TEST(TestSuiteName, TestName) {
     // your assertions go here
+    // for example
+    ASSERT_EQ(actual, expected);
 }
 ```
+
+We use the argument order `(actual, expected)`, as suggested in the [official GoogleTest documentation](https://google.github.io/googletest/primer.html#binary-comparison).
+
+#### GitHub Actions
 
 Our unit tests are automatically run with [GitHub Actions](https://docs.github.com/en/actions) whenever we `push` something new to our remote repository. In a nutshell, the workflow is described in [.github/workflows/main.yml](.github/workflows/main.yml) and it consists of multiple steps:
 
