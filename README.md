@@ -55,7 +55,7 @@ Executables are saved in `build/bin` and libraries are in `build/lib`.
 
 ### Testing
 
-We use [GoogleTest](https://github.com/google/googletest) for our unit tests. [tests/unit_tests.cpp](code/tests/unit_tests.cpp) contains the entry point, `main`, to all our unit tests. If you are creating a new module in [lib](code/lib), add a corresponding test file `tests/test_my_module.cpp`. Add this new file to the list of `TEST_FILES` in [CMakeLists.txt](code/CMakeLists.txt).
+We use [GoogleTest](https://github.com/google/googletest) for our unit tests. [unit_tests.cpp](code/tests/unittests/unit_tests.cpp) contains the entry point, `main`, to all our unit tests. If you are creating a new module in [lib](code/lib), add a corresponding test file `tests/unittests/test_my_module.cpp`. Add this new file to the list of `TEST_FILES` in [tests/CMakeLists.txt](code/tests/CMakeLists.txt).
 
 A basic `test_my_module.cpp` file will include the following boilerplate code:
 
