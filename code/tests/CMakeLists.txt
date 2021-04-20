@@ -19,6 +19,7 @@ set(TEST_FILES
 ###############################
 
 set(TEST_LINK_LIBRARIES
+    gmock
     gtest
 )
 
