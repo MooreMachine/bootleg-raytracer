@@ -1,13 +1,11 @@
 #pragma once
 
-#ifndef VECTOR3_H
-#define VECTOR3_H
 #include <ostream>
 
 class Vector3 {
 public:
 	double e[3];
-public:
+
 	Vector3();
 	Vector3(double x, double y, double z);
 
@@ -69,5 +67,3 @@ inline Vector3 UnitVector(const Vector3& v)
 {
 	return v / v.Length();
 }
-
-#endif

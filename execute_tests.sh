@@ -30,7 +30,7 @@ echo "Running app..."
 docker exec \
     -w '/home' \
     build_test \
-    sh -c './build/raytracer > /dev/null ; echo "::set-output name=quick_run_result::$?"'
+    sh -c './build/bin/raytracer > /dev/null ; echo "::set-output name=quick_run_result::$?"'
 
 echo "Building unit tests..."
 
@@ -44,7 +44,7 @@ echo "Running unit tests..."
 docker exec \
     -w '/home' \
     build_test \
-    sh -c './build/raytracer_tests; echo "::set-output name=run_unit_tests_result::$?"'
+    sh -c './build/bin/raytracer_tests; echo "::set-output name=run_unit_tests_result::$?"'
 
 echo "Stopping container..."
 

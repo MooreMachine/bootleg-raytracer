@@ -51,20 +51,28 @@ make # if you want to build all previous targets at once
 
 Alternatively, we provide a couple of scripts to this: [build_app.sh](code/build_app.sh) and [build_unit_tests.sh](code/build_unit_tests.sh).
 
+Executables are saved in `build/bin` and libraries are in `build/lib`.
+
 ### Testing
 
-We use [GoogleTest](https://github.com/google/googletest) for our unit tests. [tests/unit_tests.cpp](code/tests/unit_tests.cpp) contains the entry point, `main`, to all our unit tests. If you are creating a new module in [lib](code/lib), add a corresponding test file `tests/test_my_module.cpp`. Add this new file to the list of `TEST_FILES` in [CMakeLists.txt](code/CMakeLists.txt).
+We use [GoogleTest](https://github.com/google/googletest) for our unit tests. [unit_tests.cpp](code/tests/unittests/unit_tests.cpp) contains the entry point, `main`, to all our unit tests. If you are creating a new module in [lib](code/lib), add a corresponding test file `tests/unittests/test_my_module.cpp`. Add this new file to the list of `TEST_FILES` in [tests/CMakeLists.txt](code/tests/CMakeLists.txt).
 
 A basic `test_my_module.cpp` file will include the following boilerplate code:
 
 ```C++
 #include "my_module.h"
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 TEST(TestSuiteName, TestName) {
     // your assertions go here
+    // for example
+    ASSERT_EQ(actual, expected);
 }
 ```
+
+We use the argument order `(actual, expected)`, as suggested in the [official GoogleTest documentation](https://google.github.io/googletest/primer.html#binary-comparison).
+
+#### GitHub Actions
 
 Our unit tests are automatically run with [GitHub Actions](https://docs.github.com/en/actions) whenever we `push` something new to our remote repository. In a nutshell, the workflow is described in [.github/workflows/main.yml](.github/workflows/main.yml) and it consists of multiple steps:
 
@@ -77,11 +85,40 @@ Our unit tests are automatically run with [GitHub Actions](https://docs.github.c
 
 ### Style
 
+#### Naming conventions
+
 We are trying to follow the naming conventions laid out in the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Naming). The most important rules are:
 
 - Classes use upper `CamelCase`
 - Member functions use upper `CamelCase`
 - Except for _getters_ and _setters_, which use lower `camelCase`
+
+#### Sorting header files
+
+Header files should be sorted in the following order:
+
+1. If applicable, `.h` file corresponding to this `.cpp` file
+1. Headers from the same module
+1. Headers from other modules
+1. System headers
+
+Headers in each category should be sorted alphabetically.
+
+Reserve angle brackets (`< >`) for system headers.
+
+For example:
+
+```C++
+#include "my_module.h"
+
+#include "utils.h"
+#include "vector.h"
+
+#include "external/external_module.h"
+
+#include <cmath>
+#include <iostream>
+```
 
 ## Version control
 
@@ -89,7 +126,7 @@ We intend to use [semantic versioning 2.0.0](https://semver.org/spec/v2.0.0.html
 
 ### Git
 
-Ideally, the `master` branch should only contain changes that pass all our tests. Most changes should first be pushed to a development branch. I like to name my branches `my_new_branch` because Vim autocompletes strings like that, but not `my-new-branch`.
+Ideally, the `master` branch should only contain changes that pass all our tests. Most changes should be pushed to a development branch first. I like to name my branches `my_new_branch` because Vim autocompletes strings like that, but not `my-new-branch`.
 
 ## About
 

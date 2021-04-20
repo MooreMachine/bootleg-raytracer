@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef RAY_H
-#define RAY_H
 #include "vector3.h"
 
 class Ray {
@@ -17,5 +15,3 @@ public:
 
 	Point3 At(double t) const;
 };
-
-#endif

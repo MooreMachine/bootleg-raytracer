@@ -1,4 +1,5 @@
 #include "vector3.h"
+
 #include <cmath>
 #include <iostream>
 

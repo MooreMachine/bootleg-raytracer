@@ -1,9 +1,11 @@
-#include <iostream>
-
-#include "rtweekend.h"
-#include "hittablelist.h"
 #include "color.h"
+#include "hittablelist.h"
+#include "ray.h"
 #include "sphere.h"
+#include "utils.h"
+#include "vector3.h"
+
+#include <iostream>
 
 Color RayColor(const Ray& ray, const Hittable& world) {
     HitRecord record;

@@ -1,7 +1,6 @@
-#include <cmath>
-
 #include "sphere.h"
 
+#include <cmath>
 
 bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) const
 {
@@ -26,7 +25,7 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
 	record.t = root;
 	record.p = ray.At(record.t);
     const Vector3 outward_normal = (record.p - center) / radius;
-	record.set_face_normal(ray, outward_normal);
+	record.setFaceNormal(ray, outward_normal);
 	
 	return true;
 }
