@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils.h"
+
 #include <ostream>
 
 class Vector3 {
@@ -23,6 +25,10 @@ public:
 
 	double Length() const;
 	double LengthSquared() const;
+
+    inline static Vector3 Random() {
+        return Vector3(RandomDouble(), RandomDouble(), RandomDouble());
+    }
 };
 
 using Point3 = Vector3;
