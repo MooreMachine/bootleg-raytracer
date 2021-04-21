@@ -28,6 +28,7 @@ INSTANTIATE_TEST_CASE_P(
     Vector3RandomMinMaxTests,
     Vector3Test,
     Values(
+        std::make_tuple(-2, -1),
         std::make_tuple(1, 2),
         std::make_tuple(10.5, 2000.1),
         std::make_tuple(1, 10000000000)
