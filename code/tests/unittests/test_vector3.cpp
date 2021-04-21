@@ -7,7 +7,7 @@
 
 using namespace testing;
 
-TEST(TestVector3, RandomWhenNoParametersComponentIsMoreThanZeroUpToOOne) {
+TEST(Vector3Test, RandomWhenNoParametersComponentIsMoreThanZeroUpToOOne) {
     auto result = Vector3::Random();
     ASSERT_THAT(result.e, Each(AllOf(Ge(0), Lt(1))));
 }
