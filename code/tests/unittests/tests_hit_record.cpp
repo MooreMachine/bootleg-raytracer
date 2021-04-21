@@ -17,7 +17,7 @@ protected:
     }
 };
 
-TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsOutwardReturnsTrue) {
+TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsOutwardSetsFrontFaceToTrue) {
     Vector3 hit_point(0, 0, .5);
     Vector3 center(0, 0, 1);
     Vector3 outward_normal = hit_point - center;
@@ -39,7 +39,7 @@ TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsOutwardSetsNormalToOutw
     ASSERT_DOUBLE_EQ(record.normal.z(), outward_normal.z());
 }
 
-TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsInwardReturnsFalse) {
+TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsInwardSetsFrontFaceToTrue) {
     Vector3 hit_point(0, 0, .5);
     Vector3 center(0, 0, 0);
     Vector3 outward_normal = hit_point - center;
