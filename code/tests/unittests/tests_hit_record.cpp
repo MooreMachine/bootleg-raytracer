@@ -1,8 +1,11 @@
-#include "gtest/gtest.h"
-#include "vector3.h"
-#include "ray.h"
 #include "hitrecord.h"
 
+#include "ray.h"
+#include "vector3.h"
+
+#include "gmock/gmock.h"
+
+using namespace testing;
 
 class HitRecordTest : public ::testing::Test {
 protected:
@@ -11,7 +14,7 @@ protected:
     Vector3 forward_direction = Vector3(0, 0, 1);
     Ray ray;
 
-    virtual void SetUp() {
+    void SetUp() override {
         record = HitRecord();
         ray = Ray(ray_origin, forward_direction);
     }
@@ -34,12 +37,10 @@ TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsOutwardSetsNormalToOutw
 
     record.ComputeFaceNormalDirection(ray, outward_normal);
 
-    ASSERT_DOUBLE_EQ(record.normal.x(), outward_normal.x());
-    ASSERT_DOUBLE_EQ(record.normal.y(), outward_normal.y());
-    ASSERT_DOUBLE_EQ(record.normal.z(), outward_normal.z());
+    ASSERT_THAT(record.normal.e, ElementsAreArray(outward_normal.e));
 }
 
-TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsInwardSetsFrontFaceToTrue) {
+TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsInwardSetsFrontFaceToFalse) {
     Vector3 hit_point(0, 0, .5);
     Vector3 center(0, 0, 0);
     Vector3 outward_normal = hit_point - center;
@@ -53,10 +54,9 @@ TEST_F(HitRecordTest, ComputeFaceNormalDirectionIfRayHitsInwardSetsNormalToInver
     Vector3 hit_point(0, 0, .5);
     Vector3 center(0, 0, 0);
     Vector3 outward_normal = hit_point - center;
+    Vector3 inverted_outward_normal = -outward_normal;
 
     record.ComputeFaceNormalDirection(ray, outward_normal);
 
-    ASSERT_DOUBLE_EQ(record.normal.x(), -outward_normal.x());
-    ASSERT_DOUBLE_EQ(record.normal.y(), -outward_normal.y());
-    ASSERT_DOUBLE_EQ(record.normal.z(), -outward_normal.z());
+    ASSERT_THAT(record.normal.e, ElementsAreArray(inverted_outward_normal.e));
 }
