@@ -29,6 +29,10 @@ public:
     inline static Vector3 Random() {
         return Vector3(RandomDouble(), RandomDouble(), RandomDouble());
     }
+
+    inline static Vector3 Random(double min, double max) {
+        return Vector3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+    }
 };
 
 using Point3 = Vector3;
