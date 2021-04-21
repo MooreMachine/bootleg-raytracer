@@ -20,7 +20,8 @@ TEST(Vector3Test, RandomWhenNoParametersComponentIsMoreThanZeroUpToOOne) {
 TEST_P(Vector3Test, RandomWhenMinMaxComponentIsMoreThanMinUpToMax) {
     auto min = std::get<0>(GetParam());
     auto max = std::get<1>(GetParam());
-    ASSERT_THAT(vector_generator.Random(min, max).e, Each(AllOf(Ge(min), Lt(max))));
+    auto result = vector_generator.Random(min, max);
+    ASSERT_THAT(result.e, Each(AllOf(Ge(min), Lt(max))));
 }
 
 INSTANTIATE_TEST_CASE_P(
