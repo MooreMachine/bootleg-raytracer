@@ -60,3 +60,11 @@ double Vector3::Length() const {
 double Vector3::LengthSquared() const {
 	return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
 }
+
+Vector3 RandomInUnitSphere() {
+	auto p = Vector3::Random(-1, 1);
+	while (p.LengthSquared() >= 1) {
+		p = Vector3::Random(-1, 1);
+	}
+	return p;
+}

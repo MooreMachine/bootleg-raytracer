@@ -46,3 +46,8 @@ INSTANTIATE_TEST_CASE_P(
         std::make_tuple(10.5, 2000.1),
         std::make_tuple(1, 10000000000)
     ));
+
+TEST(Vector3Test, RandomInUnitSphereNoParametersVectorIsInsideUnitSphere) {
+    auto result = RandomInUnitSphere();
+    ASSERT_LT(result.LengthSquared(), 1);
+}

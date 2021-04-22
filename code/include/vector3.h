@@ -77,3 +77,5 @@ inline Vector3 UnitVector(const Vector3& v)
 {
 	return v / v.Length();
 }
+
+Vector3 RandomInUnitSphere();
