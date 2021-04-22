@@ -7,10 +7,17 @@
 
 #include <iostream>
 
-Color RayColor(const Ray& ray, const Hittable& world) {
+Color RayColor(const Ray& ray, const Hittable& world, int depth) {
     HitRecord record;
+
+    // If we've exceeded the ray bounce limit, no more light is gathered.
+    if (depth <= 0) {
+        return Color(0, 0, 0);
+    }
+
     if(world.Hit(ray, 0, infinity, record)) {
-        return 0.5 * (record.normal + Color(1, 1, 1));
+        Point3 target = record.p + record.normal + RandomInUnitSphere();
+        return 0.5 * RayColor(Ray(record.p, target - record.p), world, depth - 1);
     }
 
     Vector3 unit_direction = UnitVector(ray.getDirection());
@@ -25,6 +32,8 @@ int main() {
     const double aspect_ratio = 16.0 / 9.0;
     const int image_width = 400;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
+
+    const int max_depth = 50;
 
 	// World
     HittableList world;
@@ -51,7 +60,7 @@ int main() {
             auto u = double(i) / (image_width - 1);
             auto v = double(j) / (image_height - 1);
             Ray r(origin, lower_left_corner + u * horizontal + v * vertical - origin);
-            Color pixel_color = RayColor(r, world);
+            Color pixel_color = RayColor(r, world, max_depth);
             WriteColor(std::cout, pixel_color);
         }
     }
