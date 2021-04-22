@@ -22,8 +22,9 @@ void To8BitColor(Color& pixel_color) {
 
 inline void WriteColor(std::ostream &out, Color pixel_color, int samples_per_pixel) {
     GammaCorrection(pixel_color, samples_per_pixel);
+    To8BitColor(pixel_color);
 
-	out << static_cast<int>(255.999 * pixel_color.x()) << ' '
-		<< static_cast<int>(255.999 * pixel_color.y()) << ' '
-		<< static_cast<int>(255.999 * pixel_color.z()) << '\n';
+	out << static_cast<int>(pixel_color.x()) << ' '
+		<< static_cast<int>(pixel_color.y()) << ' '
+		<< static_cast<int>(pixel_color.z()) << '\n';
 }

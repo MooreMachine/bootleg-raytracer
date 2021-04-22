@@ -12,3 +12,12 @@ TEST(Color, GammaCorrectionOneSamplePerPixelReturnsSquareRoots) {
 
     ASSERT_THAT(pixel.e, Each(DoubleEq(2)));
 }
+
+TEST(Color, To8BitColorIfWhiteReturnAlmost256) {
+    double expected = 256 * 0.999;
+    Color pixel { 1, 1, 1 };
+
+    To8BitColor(pixel);
+
+    ASSERT_THAT(pixel.e, Each(DoubleEq(expected)));
+}
