@@ -1,5 +1,6 @@
 #pragma once
 
+#include "utils.h"
 #include "vector3.h"
 
 #include <iostream>
@@ -12,7 +13,16 @@ void GammaCorrection(Color& pixel_color, int samples_per_pixel) {
     }
 }
 
-inline void WriteColor(std::ostream &out, Color pixel_color) {
+void To8BitColor(Color& pixel_color) {
+    // Translate to [0, 255] values for each color component
+    for (auto& i : pixel_color.e) {
+        i = 256 * Clamp(i, 0.0, 0.999);
+    }
+}
+
+inline void WriteColor(std::ostream &out, Color pixel_color, int samples_per_pixel) {
+    GammaCorrection(pixel_color, samples_per_pixel);
+
 	out << static_cast<int>(255.999 * pixel_color.x()) << ' '
 		<< static_cast<int>(255.999 * pixel_color.y()) << ' '
 		<< static_cast<int>(255.999 * pixel_color.z()) << '\n';

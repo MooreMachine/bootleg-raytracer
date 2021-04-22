@@ -33,6 +33,7 @@ int main() {
     const int image_width = 400;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
 
+    const int samples_per_pixel = 100;
     const int max_depth = 50;
 
 	// World
@@ -61,7 +62,7 @@ int main() {
             auto v = double(j) / (image_height - 1);
             Ray r(origin, lower_left_corner + u * horizontal + v * vertical - origin);
             Color pixel_color = RayColor(r, world, max_depth);
-            WriteColor(std::cout, pixel_color);
+            WriteColor(std::cout, pixel_color, samples_per_pixel);
         }
     }
 
