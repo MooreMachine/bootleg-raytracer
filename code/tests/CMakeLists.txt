@@ -11,6 +11,7 @@ add_subdirectory(googletest)
 
 set(TEST_FILES
     unittests/unit_tests.cpp
+    unittests/tests_hit_record.cpp
     unittests/test_utils.cpp
 )
 
@@ -21,6 +22,7 @@ set(TEST_FILES
 set(TEST_LINK_LIBRARIES
     gmock
     gtest
+    raytracerlib
 )
 
 #############
