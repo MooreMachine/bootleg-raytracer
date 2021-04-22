@@ -3,6 +3,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
+#include <stdexcept>
 #include <tuple>
 
 using namespace testing;
@@ -15,6 +16,18 @@ protected:
 TEST(Vector3Test, RandomWhenNoParametersComponentIsMoreThanZeroUpToOOne) {
     auto result = Vector3::Random();
     ASSERT_THAT(result.e, Each(AllOf(Ge(0), Lt(1))));
+}
+
+TEST(Vector3Test, RandomWhenBadMinMaxThrowError) {
+    auto min = 2;
+    auto max = 1;
+    ASSERT_THROW(Vector3::Random(min, max), std::invalid_argument);
+}
+
+TEST(Vector3Test, RandomWhenGoodMinMaxThrowNoError) {
+    auto min = 1;
+    auto max = 2;
+    ASSERT_NO_THROW(Vector3::Random(min, max));
 }
 
 TEST_P(Vector3Test, RandomWhenMinMaxComponentIsMoreThanMinUpToMax) {
