@@ -5,7 +5,7 @@
 
 using namespace testing;
 
-TEST(Color, GammaCorrectionOneSamplePerPixel) {
+TEST(Color, GammaCorrectionOneSamplePerPixelReturnsSquareRoots) {
     Color pixel { 4, 4, 4 };
     
     GammaCorrection(pixel, 1);
