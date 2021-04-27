@@ -70,3 +70,67 @@ TEST_F(Vector3Test, MultiplyEqualOperatorWhenMultiplyingADoubleReturnsMultiplica
 
     ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
 }
+
+TEST_F(Vector3Test, DivideOpertatorWhenDividingAVector3AndDoubleReturnsDivisionOfBothValues) {
+    Vector3 expectedVector(0.5, 0.5, 0.5);
+
+    Vector3 actualVector = test_vector / 2.0;
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+}
+
+TEST_F(Vector3Test, DivideEqualsOpertatorWhenDividingADoubleReturnsDivisionOfBothValues) {
+    Vector3 expectedVector(0.5, 0.5, 0.5);
+    Vector3 actualVector = test_vector;
+
+    actualVector /= 2.0;
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+}
+
+
+
+TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared)
+{
+    double expectedValue = std::sqrt(3.0);
+
+    double actualValue = test_vector.Length();
+
+    ASSERT_THAT(actualValue, expectedValue);
+}
+
+TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVector)
+{
+    double expectedValue = 3.0;
+
+    double actualValue = test_vector.LengthSquared();
+
+    ASSERT_THAT(actualValue, expectedValue);
+}
+
+TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors)
+{
+    double expectedValue = 3.0;
+
+    double actualValue = Dot(test_vector, test_vector);
+
+    ASSERT_THAT(actualValue, expectedValue);
+}
+
+TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors)
+{
+    Vector3 expectedVector(0.0, 0.0, 1.0);
+
+    Vector3 actualVector = Cross(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0));
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+}
+
+TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector)
+{
+    Vector3 expectedVector(0.0, 1.0, 0.0);
+
+    Vector3 actualVector = UnitVector(Vector3(0.0, 1.0, 0.0));
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+}
