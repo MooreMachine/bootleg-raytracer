@@ -1,3 +1,4 @@
+#include "camera.h"
 #include "color.h"
 #include "hittablelist.h"
 #include "ray.h"
@@ -32,7 +33,6 @@ int main() {
     const double aspect_ratio = 16.0 / 9.0;
     const int image_width = 400;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 100;
 
     const int samples_per_pixel = 100;
     const int max_depth = 50;
@@ -58,7 +58,7 @@ int main() {
                 auto v = (j + RandomDouble()) / (image_height-1);
 
                 Ray r = cam.GetRay(u, v);
-                pixel_color += RayColor(r, world);
+                pixel_color += RayColor(r, world, max_depth);
             }
             WriteColor(std::cout, pixel_color, samples_per_pixel);
         }
