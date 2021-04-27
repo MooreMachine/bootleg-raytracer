@@ -1,6 +1,8 @@
 #pragma once
 
-#include "rtweekend.h"
+#include "ray.h"
+#include "utils.h"
+#include "vector3.h"
 
 class Camera {
     public: 
