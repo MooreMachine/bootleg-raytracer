@@ -7,7 +7,7 @@
 
 using namespace testing;
 
-TEST(Color, GammaCorrectionOneSamplePerPixelReturnsSquareRoots) {
+TEST(ColorTest, GammaCorrectionOneSamplePerPixelReturnsSquareRoots) {
     Color pixel { 4, 4, 4 };
     
     GammaCorrection(pixel, 1);
@@ -15,7 +15,7 @@ TEST(Color, GammaCorrectionOneSamplePerPixelReturnsSquareRoots) {
     ASSERT_THAT(pixel.e, Each(DoubleEq(2)));
 }
 
-TEST(Color, To8BitColorIfWhiteReturnAlmost256) {
+TEST(ColorTest, To8BitColorIfWhiteReturnAlmost256) {
     double expected = 256 * 0.999;
     Color pixel { 1, 1, 1 };
 
@@ -24,7 +24,7 @@ TEST(Color, To8BitColorIfWhiteReturnAlmost256) {
     ASSERT_THAT(pixel.e, Each(DoubleEq(expected)));
 }
 
-TEST(Color, WriteColorPoint25Returns128) {
+TEST(ColorTest, WriteColorPoint25Returns128) {
     std::stringstream ss;
     Color pixel { 0.25, 0.25, 0.25 };
     int samples_per_pixel = 1;
