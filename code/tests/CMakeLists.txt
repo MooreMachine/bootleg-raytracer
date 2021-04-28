@@ -11,7 +11,7 @@ add_subdirectory(googletest)
 
 set(TEST_FILES
     unittests/unit_tests.cpp
-    unittests/test_antialiasing.cpp
+    unittests/test_camera.cpp
     unittests/test_color.cpp
     unittests/test_utils.cpp
     unittests/test_vector3.cpp
