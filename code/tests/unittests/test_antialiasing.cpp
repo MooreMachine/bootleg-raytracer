@@ -31,7 +31,8 @@ TEST_F(CameraTest, GetRayAnyCameraOriginIsZero) {
     ASSERT_THAT(ray.getOrigin().e, ElementsAre(0, 0, 0));
 }
 
-TEST_F(CameraTest, GetRayMultiplyByUnitDirectionIs) {
+TEST_F(CameraTest, GetRayMultiplyByUnitDirectionIsExpectedVector) {
     Vector3 direction = lower_left_corner + horizontal + vertical - origin;
+
     ASSERT_THAT(ray.getDirection().e, ElementsAreArray(direction.e));
 }
