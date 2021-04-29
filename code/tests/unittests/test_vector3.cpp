@@ -13,82 +13,117 @@ protected:
     }
 };
 
-TEST_F(Vector3Test, MinusOperatorOperatorWhenNoParamsReturnsInvertedVector3) {
-    Vector3 expectedVector(-1.0, -1.0, -1.0);
+TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content)
+{
+    std::string expected_value = "1 1 1";
+    std::stringstream actual_stream;
 
-    Vector3 actualVector = -test_vector;
+    actual_stream << test_vector;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
-}
-
-TEST_F(Vector3Test, MinusOperatorWhenSubstractingTwoVector3ReturnsTheSubstractionOfBothValues) {
-    Vector3 expectedVector(0.0, 0.0, 0.0);
-
-    Vector3 actualVector = test_vector-test_vector;
-
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_EQ(actual_stream.str(), expected_value);
 }
 
 TEST_F(Vector3Test, PlusOperatorWhenAddingUpTwoVector3ReturnsTheSumOfBothValues) {
-    Vector3 expectedVector(2.0, 2.0, 2.0);
+    Vector3 expected_vector(2.0, 2.0, 2.0);
 
     Vector3 actualVector = test_vector + test_vector;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, PlusEqualOperatorWhenAddingUpAVector3ReturnsTheSumOfBothValues) {
-    Vector3 expectedVector(2.0, 2.0, 2.0);
-    Vector3 actualVector = test_vector;
+    Vector3 expected_vector(2.0, 2.0, 2.0);
+    Vector3 actual_vector = test_vector;
 
-    actualVector += test_vector;
+    actual_vector += test_vector;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
+}
+
+TEST_F(Vector3Test, MinusOperatorWhenSubstractingTwoVector3ReturnsTheSubstractionOfBothValues) {
+    Vector3 expected_vector(0.0, 0.0, 0.0);
+
+    Vector3 actualVector = test_vector-test_vector;
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expected_vector.e));
+}
+
+TEST_F(Vector3Test, MinusOperatorWhenNoParamsReturnsInvertedVector3) {
+    Vector3 expected_vector(-1.0, -1.0, -1.0);
+
+    Vector3 actualVector = -test_vector;
+
+    ASSERT_THAT(actualVector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, MultiplyOperatorWhenMultiplyingTwoVector3ReturnsMultiplicationOfBothValues) {
-    Vector3 expectedVector(2.0, 2.0, 2.0);
+    Vector3 expected_vector(2.0, 2.0, 2.0);
 
-    Vector3 actualVector = test_vector * Vector3(2.0, 2.0, 2.0);
+    Vector3 actual_vector = test_vector * Vector3(2.0, 2.0, 2.0);
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, MultiplyOperatorWhenMultiplyingADoubleAndVector3ReturnsMultiplicationOfBothValues) {
-    Vector3 expectedVector(2.0, 2.0, 2.0);
+    Vector3 expected_vector(2.0, 2.0, 2.0);
 
-    Vector3 actualVector = 2.0 * test_vector;
+    Vector3 actual_vector = 2.0 * test_vector;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, MultiplyEqualOperatorWhenMultiplyingADoubleReturnsMultiplicationOfBothValues) {
-    Vector3 expectedVector(2.0, 2.0, 2.0);
-    Vector3 actualVector = test_vector;
+    Vector3 expected_vector(2.0, 2.0, 2.0);
+    Vector3 actual_vector = test_vector;
 
-    actualVector *= 2.0;
+    actual_vector *= 2.0;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, DivideOpertatorWhenDividingAVector3AndDoubleReturnsDivisionOfBothValues) {
-    Vector3 expectedVector(0.5, 0.5, 0.5);
+    Vector3 expected_vector(0.5, 0.5, 0.5);
 
-    Vector3 actualVector = test_vector / 2.0;
+    Vector3 actual_vector = test_vector / 2.0;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
 TEST_F(Vector3Test, DivideEqualsOpertatorWhenDividingADoubleReturnsDivisionOfBothValues) {
-    Vector3 expectedVector(0.5, 0.5, 0.5);
-    Vector3 actualVector = test_vector;
+    Vector3 expected_vector(0.5, 0.5, 0.5);
+    Vector3 actual_vector = test_vector;
 
-    actualVector /= 2.0;
+    actual_vector /= 2.0;
 
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
+TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors)
+{
+    double expectedValue = 3.0;
 
+    double actualValue = Dot(test_vector, test_vector);
+
+    ASSERT_THAT(actualValue, expectedValue);
+}
+
+TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors)
+{
+    Vector3 expected_vector(0.0, 0.0, 1.0);
+
+    Vector3 actual_vector = Cross(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0));
+
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
+}
+
+TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector)
+{
+    Vector3 expected_vector(0.0, 1.0, 0.0);
+
+    Vector3 actual_vector = UnitVector(Vector3(0.0, 1.0, 0.0));
+
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
+}
 
 TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared)
 {
@@ -108,29 +143,3 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors)
-{
-    double expectedValue = 3.0;
-
-    double actualValue = Dot(test_vector, test_vector);
-
-    ASSERT_THAT(actualValue, expectedValue);
-}
-
-TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors)
-{
-    Vector3 expectedVector(0.0, 0.0, 1.0);
-
-    Vector3 actualVector = Cross(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0));
-
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
-}
-
-TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector)
-{
-    Vector3 expectedVector(0.0, 1.0, 0.0);
-
-    Vector3 actualVector = UnitVector(Vector3(0.0, 1.0, 0.0));
-
-    ASSERT_THAT(actualVector.e, ElementsAreArray(expectedVector.e));
-}
