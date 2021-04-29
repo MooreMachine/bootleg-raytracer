@@ -1,5 +1,9 @@
 # Easy Ubuntu Toolchain Changelog
 
+# 0.2.3
+
+- Install `git`.
+
 # 0.2.2
 
 - Install `tree`.
