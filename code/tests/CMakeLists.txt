@@ -14,6 +14,7 @@ set(TEST_FILES
     unittests/test_camera.cpp
     unittests/test_color.cpp
     unittests/test_ray.cpp
+    unittests/test_sphere.cpp
     unittests/test_utils.cpp
     unittests/test_vector3.cpp
 )
