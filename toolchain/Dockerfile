@@ -11,3 +11,5 @@ RUN apt-get -y install vim
 RUN apt-get -y install \
     tree \
     icdiff
+
+RUN apt-get -y install git
