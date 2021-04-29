@@ -16,4 +16,4 @@ There are two options to run the container: interactive and detached mode. To ru
 
 ## About
 
-Version 0.2.2
+Version: 0.2.4
