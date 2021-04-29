@@ -1,5 +1,9 @@
 # Easy Ubuntu Toolchain Changelog
 
+# 0.2.4
+
+- Install `gdb`.
+
 # 0.2.3
 
 - Install `git`.

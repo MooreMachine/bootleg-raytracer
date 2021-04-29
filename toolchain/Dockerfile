@@ -13,3 +13,5 @@ RUN apt-get -y install \
     icdiff
 
 RUN apt-get -y install git
+
+RUN apt-get -y install gdb
