@@ -40,7 +40,7 @@ TEST_F(Vector3Test, PlusEqualOperatorWhenAddingUpAVector3ReturnsTheSumOfBothValu
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, MinusOperatorWhenSubstractingTwoVector3ReturnsTheSubstractionOfBothValues) {
+TEST_F(Vector3Test, MinusOperatorWhenSubtractingTwoVector3ReturnsTheSubtractionOfBothValues) {
     Vector3 expected_vector(0.0, 0.0, 0.0);
 
     Vector3 actualVector = test_vector-test_vector;
@@ -81,7 +81,7 @@ TEST_F(Vector3Test, MultiplyEqualOperatorWhenMultiplyingADoubleReturnsMultiplica
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, DivideOpertatorWhenDividingAVector3AndDoubleReturnsDivisionOfBothValues) {
+TEST_F(Vector3Test, DivideOperatorWhenDividingAVector3AndDoubleReturnsDivisionOfBothValues) {
     Vector3 expected_vector(0.5, 0.5, 0.5);
 
     Vector3 actual_vector = test_vector / 2.0;
@@ -89,7 +89,7 @@ TEST_F(Vector3Test, DivideOpertatorWhenDividingAVector3AndDoubleReturnsDivisionO
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, DivideEqualsOpertatorWhenDividingADoubleReturnsDivisionOfBothValues) {
+TEST_F(Vector3Test, DivideEqualsOperatorWhenDividingADoubleReturnsDivisionOfBothValues) {
     Vector3 expected_vector(0.5, 0.5, 0.5);
     Vector3 actual_vector = test_vector;
 
@@ -142,4 +142,3 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
 
     ASSERT_THAT(actualValue, expectedValue);
 }
-
