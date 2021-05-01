@@ -10,6 +10,7 @@ add_subdirectory(googletest)
 ###################
 
 set(TEST_FILES
+    unittests/test_hittablelist.cpp
     unittests/unit_tests.cpp
     unittests/tests_hit_record.cpp
     unittests/test_utils.cpp
