@@ -67,7 +67,7 @@ TEST_F(HittableListTest, HitIfRayCollidesWithObjectUpdatesHitRecord) {
     HittableList list(hittable);
     HitRecord actual_record = record;
 
-    bool actual_hit = list.Hit(ray, 0.0, 0.0, actual_record);
+    list.Hit(ray, 0.0, 0.0, actual_record);
 
     ASSERT_NE(&actual_record, &record);
 }
