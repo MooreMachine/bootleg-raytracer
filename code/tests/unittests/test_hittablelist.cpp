@@ -14,6 +14,7 @@ protected:
 
     void SetUp() override {
         record = HitRecord();
+        record.t = 1.0;
         ray = Ray(ray_origin, forward_direction);
     }
 };
@@ -25,12 +26,12 @@ public:
     explicit HittableMock(bool will_hit) : will_hit(will_hit) {}
 
     bool Hit(const Ray &ray, double t_min, double t_max, HitRecord &record) const override {
+        record.t = 0.0;
         return will_hit;
     }
 };
 
-std::shared_ptr<Hittable> GetHittableObject(bool will_hit)
-{
+std::shared_ptr<Hittable> GetHittableObject(bool will_hit) {
     HittableMock hittable_mock(will_hit);
     return std::make_shared<HittableMock>(hittable_mock);
 }
@@ -65,11 +66,11 @@ TEST_F(HittableListTest, HitIfRayCollidesWithObjectReturnsTrue) {
 TEST_F(HittableListTest, HitIfRayCollidesWithObjectUpdatesHitRecord) {
     std::shared_ptr<Hittable> hittable = GetHittableObject(true);
     HittableList list(hittable);
-    HitRecord actual_record = record;
+    auto actual_record = record;
 
     list.Hit(ray, 0.0, 0.0, actual_record);
 
-    ASSERT_NE(&actual_record, &record);
+    ASSERT_NE(actual_record.t, record.t);
 }
 
 TEST_F(HittableListTest, HitIfRayDoesNotCollideWithObjectReturnsFalse) {
