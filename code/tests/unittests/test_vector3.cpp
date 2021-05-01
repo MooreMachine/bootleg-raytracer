@@ -56,6 +56,20 @@ TEST_F(Vector3Test, MinusOperatorWhenNoParamsReturnsInvertedVector3) {
     ASSERT_THAT(actualVector.e, ElementsAreArray(expected_vector.e));
 }
 
+TEST_F(Vector3Test, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
+    double actual_value= test_vector[0];
+
+    ASSERT_EQ(actual_value, 1.0);
+}
+
+TEST_F(Vector3Test, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
+    double* expected_value= std::addressof(test_vector.e[0]);
+
+    double* actual_value= std::addressof(test_vector[0]);
+
+    ASSERT_EQ(actual_value, expected_value);
+}
+
 TEST_F(Vector3Test, MultiplyOperatorWhenMultiplyingTwoVector3ReturnsMultiplicationOfBothValues) {
     Vector3 expected_vector(2.0, 2.0, 2.0);
 
