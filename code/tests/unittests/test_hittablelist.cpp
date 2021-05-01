@@ -14,7 +14,6 @@ protected:
 
     void SetUp() override {
         record = HitRecord();
-        record.t = 1.0;
         ray = Ray(ray_origin, forward_direction);
     }
 };
@@ -26,14 +25,18 @@ public:
     explicit HittableMock(bool will_hit) : will_hit(will_hit) {}
 
     bool Hit(const Ray &ray, double t_min, double t_max, HitRecord &record) const override {
-        record.t = 0.0;
         return will_hit;
     }
 };
 
+std::shared_ptr<Hittable> GetHittableObject(bool will_hit)
+{
+    HittableMock hittable_mock(will_hit);
+    return std::make_shared<HittableMock>(hittable_mock);
+}
+
 TEST_F(HittableListTest, ClearWhenNoParamsClearsTheListOfHittableObjects) {
-    HittableMock hittable_mock(true);
-    std::shared_ptr<Hittable> hittable = std::make_shared<HittableMock>(hittable_mock);
+    std::shared_ptr<Hittable> hittable = GetHittableObject(true);
     HittableList list(hittable);
 
     list.Clear();
@@ -42,8 +45,7 @@ TEST_F(HittableListTest, ClearWhenNoParamsClearsTheListOfHittableObjects) {
 }
 
 TEST_F(HittableListTest, AddWhenPassingAHittableObjectAddsReferenceToList) {
-    HittableMock hittable_mock(true);
-    std::shared_ptr<Hittable> hittable = std::make_shared<HittableMock>(hittable_mock);
+    std::shared_ptr<Hittable> hittable = GetHittableObject(true);
     HittableList list;
 
     list.Add(hittable);
@@ -52,8 +54,7 @@ TEST_F(HittableListTest, AddWhenPassingAHittableObjectAddsReferenceToList) {
 }
 
 TEST_F(HittableListTest, HitIfRayCollidesWithObjectReturnsTrue) {
-    HittableMock hittable_mock(true);
-    std::shared_ptr<Hittable> hittable = std::make_shared<HittableMock>(hittable_mock);
+    std::shared_ptr<Hittable> hittable = GetHittableObject(true);
     HittableList list(hittable);
 
     bool actual_hit = list.Hit(ray, 0.0, 0.0, record);
@@ -62,20 +63,17 @@ TEST_F(HittableListTest, HitIfRayCollidesWithObjectReturnsTrue) {
 }
 
 TEST_F(HittableListTest, HitIfRayCollidesWithObjectUpdatesHitRecord) {
-    HittableMock hittable_mock(true);
-    std::shared_ptr<Hittable> hittable = std::make_shared<HittableMock>(hittable_mock);
+    std::shared_ptr<Hittable> hittable = GetHittableObject(true);
     HittableList list(hittable);
     HitRecord actual_record = record;
 
     bool actual_hit = list.Hit(ray, 0.0, 0.0, actual_record);
 
-    ASSERT_TRUE(actual_hit);
-    ASSERT_NE(actual_record.t, record.t);
+    ASSERT_NE(&actual_record, &record);
 }
 
 TEST_F(HittableListTest, HitIfRayDoesNotCollideWithObjectReturnsFalse) {
-    HittableMock hittable_mock(false);
-    std::shared_ptr<Hittable> hittable = std::make_shared<HittableMock>(hittable_mock);
+    std::shared_ptr<Hittable> hittable = GetHittableObject(false);
     HittableList list(hittable);
 
     bool actual_hit = list.Hit(ray,0.0, 0.0, record);
