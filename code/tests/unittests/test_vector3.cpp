@@ -152,8 +152,9 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
 
 TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
     int index = std::get<0>(GetParam());
-    double actual_value = test_vector_456[index];
     double expected_value = std::get<1>(GetParam());
+
+    double actual_value = test_vector_456[index];
 
     ASSERT_EQ(actual_value, expected_value);
 }
