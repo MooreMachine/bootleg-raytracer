@@ -2,6 +2,8 @@
 
 #include "gmock/gmock.h"
 
+#include <tuple>
+
 using namespace testing;
 
 class Vector3Test : public ::testing::Test {
@@ -13,7 +15,10 @@ protected:
     }
 };
 
-class Vector3ParameterizedTest : public Vector3Test, public ::testing::WithParamInterface<int> {};
+class Vector3ParameterizedTest : public ::testing::TestWithParam<std::tuple<int, double>> {
+protected:
+    Vector3 test_vector_456 { 4.0, 5.0, 6.0 } ;
+};
 
 TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content)
 {
@@ -146,17 +151,26 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
 }
 
 TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
-    double actual_value= test_vector[GetParam()];
-
-    ASSERT_EQ(actual_value, 1.0);
-}
-
-TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
-    double* expected_value= std::addressof(test_vector.e[GetParam()]);
-
-    double* actual_value= std::addressof(test_vector[GetParam()]);
+    int index = std::get<0>(GetParam());
+    double actual_value = test_vector_456[index];
+    double expected_value = std::get<1>(GetParam());
 
     ASSERT_EQ(actual_value, expected_value);
 }
 
-INSTANTIATE_TEST_SUITE_P(BrackerOperators, Vector3ParameterizedTest, ::testing::Values(0, 1, 2));
+TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
+    double* expected_value = std::addressof(test_vector_456.e[std::get<0>(GetParam())]);
+
+    double* actual_value = std::addressof(test_vector_456[std::get<0>(GetParam())]);
+
+    ASSERT_EQ(actual_value, expected_value);
+}
+
+INSTANTIATE_TEST_CASE_P(
+    BrackerOperators,
+    Vector3ParameterizedTest,
+    ::testing::Values(
+        std::make_tuple(0, 4.0), // first -> index, second -> value
+        std::make_tuple(1, 5.0),
+        std::make_tuple(2, 6.0)
+    ));
