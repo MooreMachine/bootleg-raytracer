@@ -159,9 +159,10 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleI
 }
 
 TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
-    double* expected_value = std::addressof(test_vector_456.e[std::get<0>(GetParam())]);
+    int index = std::get<0>(GetParam());
+    double* expected_value = std::addressof(test_vector_456.e[index]);
 
-    double* actual_value = std::addressof(test_vector_456[std::get<0>(GetParam())]);
+    double* actual_value = std::addressof(test_vector_456[index]);
 
     ASSERT_EQ(actual_value, expected_value);
 }
