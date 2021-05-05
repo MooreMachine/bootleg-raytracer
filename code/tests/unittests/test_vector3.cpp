@@ -167,7 +167,7 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleR
 }
 
 INSTANTIATE_TEST_CASE_P(
-    BrackerOperators,
+    Vector3BracketOperators,
     Vector3ParameterizedTest,
     ::testing::Values(
         std::make_tuple(0, 4.0), // first -> index, second -> value
