@@ -13,6 +13,8 @@ protected:
     }
 };
 
+class Vector3ParameterizedTest : public Vector3Test, public ::testing::WithParamInterface<int> {};
+
 TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content)
 {
     std::string expected_value = "1 1 1";
@@ -54,20 +56,6 @@ TEST_F(Vector3Test, MinusOperatorWhenNoParamsReturnsInvertedVector3) {
     Vector3 actualVector = -test_vector;
 
     ASSERT_THAT(actualVector.e, ElementsAreArray(expected_vector.e));
-}
-
-TEST_F(Vector3Test, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
-    double actual_value= test_vector[0];
-
-    ASSERT_EQ(actual_value, 1.0);
-}
-
-TEST_F(Vector3Test, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
-    double* expected_value= std::addressof(test_vector.e[0]);
-
-    double* actual_value= std::addressof(test_vector[0]);
-
-    ASSERT_EQ(actual_value, expected_value);
 }
 
 TEST_F(Vector3Test, MultiplyOperatorWhenMultiplyingTwoVector3ReturnsMultiplicationOfBothValues) {
@@ -156,3 +144,19 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
 
     ASSERT_THAT(actualValue, expectedValue);
 }
+
+TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
+    double actual_value= test_vector[GetParam()];
+
+    ASSERT_EQ(actual_value, 1.0);
+}
+
+TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
+    double* expected_value= std::addressof(test_vector.e[GetParam()]);
+
+    double* actual_value= std::addressof(test_vector[GetParam()]);
+
+    ASSERT_EQ(actual_value, expected_value);
+}
+
+INSTANTIATE_TEST_SUITE_P(BrackerOperators, Vector3ParameterizedTest, ::testing::Values(0, 1, 2));
