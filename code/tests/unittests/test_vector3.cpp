@@ -17,7 +17,7 @@ protected:
 
 class Vector3ParameterizedTest : public ::testing::TestWithParam<std::tuple<int, double>> {
 protected:
-    Vector3 test_vector_456 { 4.0, 5.0, 6.0 } ;
+    Vector3 param_test_vector {4.0, 5.0, 6.0 } ;
 };
 
 TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content) {
@@ -148,16 +148,16 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleI
     int index = std::get<0>(GetParam());
     double expected_value = std::get<1>(GetParam());
 
-    double actual_value = test_vector_456[index];
+    double actual_value = param_test_vector[index];
 
     ASSERT_EQ(actual_value, expected_value);
 }
 
 TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
     int index = std::get<0>(GetParam());
-    double* expected_value = std::addressof(test_vector_456.e[index]);
+    double* expected_value = std::addressof(param_test_vector.e[index]);
 
-    double* actual_value = std::addressof(test_vector_456[index]);
+    double* actual_value = std::addressof(param_test_vector[index]);
 
     ASSERT_EQ(actual_value, expected_value);
 }
