@@ -162,7 +162,7 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleR
     ASSERT_EQ(actual_value, expected_value);
 }
 
-INSTANTIATE_TEST_CASE_P(
+INSTANTIATE_TEST_SUITE_P(
     Vector3BracketOperators,
     Vector3ParameterizedTest,
     ::testing::Values(
