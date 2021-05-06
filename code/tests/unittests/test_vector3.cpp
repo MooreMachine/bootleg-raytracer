@@ -20,8 +20,7 @@ protected:
     Vector3 test_vector_456 { 4.0, 5.0, 6.0 } ;
 };
 
-TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content)
-{
+TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content) {
     std::string expected_value = "1 1 1";
     std::stringstream actual_stream;
 
@@ -105,8 +104,7 @@ TEST_F(Vector3Test, DivideEqualsOperatorWhenDividingADoubleReturnsDivisionOfBoth
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors)
-{
+TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors) {
     double expectedValue = 3.0;
 
     double actualValue = Dot(test_vector, test_vector);
@@ -114,8 +112,7 @@ TEST_F(Vector3Test, DotWhenPassingTwoVector3ReturnsDotProductOfBothVectors)
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors)
-{
+TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors) {
     Vector3 expected_vector(0.0, 0.0, 1.0);
 
     Vector3 actual_vector = Cross(Vector3(1.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0));
@@ -123,8 +120,7 @@ TEST_F(Vector3Test, CrossWhenPassingTwoVector3ReturnsCrossProductOfBothVectors)
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector)
-{
+TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector) {
     Vector3 expected_vector(0.0, 1.0, 0.0);
 
     Vector3 actual_vector = UnitVector(Vector3(0.0, 1.0, 0.0));
@@ -132,8 +128,7 @@ TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector)
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
-TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared)
-{
+TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared) {
     double expectedValue = std::sqrt(3.0);
 
     double actualValue = test_vector.Length();
@@ -141,8 +136,7 @@ TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVector)
-{
+TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVector) {
     double expectedValue = 3.0;
 
     double actualValue = test_vector.LengthSquared();
