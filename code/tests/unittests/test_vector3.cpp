@@ -7,7 +7,7 @@
 
 using namespace testing;
 
-class Vector3Test : public ::testing::Test {
+class Vector3Test : public Test {
 protected:
     Vector3 test_vector;
 
@@ -140,7 +140,7 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-class Vector3BracketOperatorTest : public ::testing::TestWithParam<std::tuple<int, double>> {
+class Vector3BracketOperatorTest : public TestWithParam<std::tuple<int, double>> {
 protected:
     Vector3 param_test_vector {4.0, 5.0, 6.0 } ;
 };
@@ -166,7 +166,7 @@ TEST_P(Vector3BracketOperatorTest, BracketOperatorWhenPassingAnIndexReturnsDoubl
 INSTANTIATE_TEST_SUITE_P(
     Vector3BracketOperatorValueComparison,
     Vector3BracketOperatorTest,
-    ::testing::Values(
+    Values(
         // first -> index, second -> value
         std::make_tuple(0, 4.0),
         std::make_tuple(1, 5.0),
