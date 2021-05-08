@@ -19,7 +19,7 @@ protected:
     }
 };
 
-TEST_F(SphereTest, HitRayZAxisMin0Max1ReturnsFalse) {
+TEST_F(SphereTest, HitRayZAxisMin0Max1ReturnsTrue) {
     Point3 origin { 2, 2, 2 };
     Vector3 direction { 0, 0, -1 };
     Ray ray {origin, direction};
@@ -29,5 +29,5 @@ TEST_F(SphereTest, HitRayZAxisMin0Max1ReturnsFalse) {
 
     bool is_hit = sphere.Hit(ray, min, max, record);
 
-    ASSERT_EQ(is_hit, false);
+    ASSERT_EQ(is_hit, true);
 }
