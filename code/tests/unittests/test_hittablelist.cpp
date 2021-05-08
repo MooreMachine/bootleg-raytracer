@@ -4,8 +4,7 @@
 
 using namespace testing;
 
-
-class HittableListTest : public ::testing::Test {
+class HittableListTest : public Test {
 protected:
     HitRecord record;
     Vector3 ray_origin = Vector3(0, 0, 0);
