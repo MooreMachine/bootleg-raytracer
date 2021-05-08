@@ -20,7 +20,7 @@ void To8BitColor(Color& pixel_color) {
     }
 }
 
-inline void WriteColor(std::ostream &out, Color pixel_color, int samples_per_pixel) {
+void WriteColor(std::ostream &out, Color pixel_color, int samples_per_pixel) {
     GammaCorrection(pixel_color, samples_per_pixel);
     To8BitColor(pixel_color);
 
