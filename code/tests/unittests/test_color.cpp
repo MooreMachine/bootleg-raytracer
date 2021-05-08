@@ -23,7 +23,7 @@ TEST(ColorTest, To8BitColorIfWhiteReturnAlmost256) {
     ASSERT_THAT(pixel.e, Each(DoubleEq(expected)));
 }
 
-TEST(ColorTest, WriteColorPoint25Returns128) {
+TEST(ColorTest, WriteColorWhenPassingAPixelOutputsColorValue) {
     std::stringstream ss;
     Color pixel { 0.25, 0.25, 0.25 };
     int samples_per_pixel = 1;

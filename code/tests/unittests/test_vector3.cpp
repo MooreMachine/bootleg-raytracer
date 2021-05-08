@@ -178,18 +178,18 @@ protected:
     Vector3 vector_generator;
 };
 
-TEST(Vector3RandomTest, RandomWhenNoParametersComponentIsMoreThanZeroUpToOOne) {
+TEST(Vector3RandomTest, RandomWhenNoParametersReturnsVectorWithValuesFromMoreThanZeroUpToOne) {
     auto result = Vector3::Random();
     ASSERT_THAT(result.e, Each(AllOf(Ge(0), Lt(1))));
 }
 
-TEST(Vector3RandomTest, RandomWhenBadMinMaxThrowError) {
+TEST(Vector3RandomTest, RandomWhenMinGreaterThanMaxThrowsError) {
     auto min = 2;
     auto max = 1;
     ASSERT_THROW(Vector3::Random(min, max), std::invalid_argument);
 }
 
-TEST(Vector3RandomTest, RandomWhenGoodMinMaxThrowNoError) {
+TEST(Vector3RandomTest, RandomWhenMinLessThanMaxThrowsNoError) {
     auto min = 1;
     auto max = 2;
     ASSERT_NO_THROW(Vector3::Random(min, max));
@@ -200,7 +200,7 @@ TEST(Vector3RandomTest, RandomInUnitSphereNoParametersVectorIsInsideUnitSphere) 
     ASSERT_LT(result.LengthSquared(), 1);
 }
 
-TEST_P(Vector3RandomTest, RandomWhenMinMaxComponentIsMoreThanMinUpToMax) {
+TEST_P(Vector3RandomTest, RandomWhenPassingMinMaxParametersReturnsVectorWithinRange) {
     auto min = std::get<0>(GetParam());
     auto max = std::get<1>(GetParam());
     auto result = vector_generator.Random(min, max);
