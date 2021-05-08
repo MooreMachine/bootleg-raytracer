@@ -209,7 +209,7 @@ TEST_P(Vector3RandomTest, RandomWhenMinMaxComponentIsMoreThanMinUpToMax) {
     ASSERT_THAT(result.e, Each(AllOf(Ge(min), Lt(max))));
 }
 
-INSTANTIATE_TEST_CASE_P(
+INSTANTIATE_TEST_SUITE_P(
     Vector3RandomMinMaxTests,
     Vector3RandomTest,
     Values(
