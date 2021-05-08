@@ -10,7 +10,7 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
     const double c = origin_center.LengthSquared() - std::pow(radius, 2);
 	
     const double discriminant = std::pow(b, 2) - (a * c);
-    if (discriminant < 0) return false;
+    if (!RayHitsObject(discriminant)) return false;
     const double squared_discriminant = sqrt(discriminant);
 
 	// Find the nearest root that lies in the acceptable range.
@@ -28,4 +28,10 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
 	record.setFaceNormal(ray, outward_normal);
 	
 	return true;
+}
+
+bool Sphere::RayHitsObject(double discriminant) const {
+    // if there are no real roots
+    // the ray does not hit the sphere
+    return discriminant >= 0;
 }
