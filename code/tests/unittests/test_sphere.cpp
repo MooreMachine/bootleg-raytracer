@@ -31,3 +31,16 @@ TEST_F(SphereTest, HitRayZAxisMin0Max1ReturnsTrue) {
 
     ASSERT_EQ(is_hit, true);
 }
+
+TEST_F(SphereTest, HitRayZAxisMin0Max05ReturnsFalse) {
+    Point3 origin { 2, 2, 2, };
+    Vector3 direction { 0, 0, -1 };
+    Ray ray { origin, direction };
+    double min = 0;
+    double max = 0.5;
+    HitRecord record {};
+
+    bool is_hit = sphere.Hit(ray, min, max, record);
+
+    ASSERT_EQ(is_hit, false);
+}
