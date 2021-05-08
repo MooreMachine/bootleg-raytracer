@@ -142,12 +142,12 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-class Vector3ParameterizedTest : public ::testing::TestWithParam<std::tuple<int, double>> {
+class Vector3BracketOperatorTest : public ::testing::TestWithParam<std::tuple<int, double>> {
 protected:
     Vector3 param_test_vector {4.0, 5.0, 6.0 } ;
 };
 
-TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
+TEST_P(Vector3BracketOperatorTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
     int index = std::get<0>(GetParam());
     double expected_value = std::get<1>(GetParam());
 
@@ -156,7 +156,7 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleI
     ASSERT_EQ(actual_value, expected_value);
 }
 
-TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
+TEST_P(Vector3BracketOperatorTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
     int index = std::get<0>(GetParam());
     double* expected_value = std::addressof(param_test_vector.e[index]);
 
@@ -166,8 +166,8 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleR
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    Vector3BracketOperators,
-    Vector3ParameterizedTest,
+    Vector3BracketOperatorValueComparison,
+    Vector3BracketOperatorTest,
     ::testing::Values(
         // first -> index, second -> value
         std::make_tuple(0, 4.0),
