@@ -4,6 +4,7 @@
 #include <limits>
 #include <memory>
 #include <random>
+#include <stdexcept>
 
 // Usings
 
@@ -31,7 +32,11 @@ inline double RandomDouble() {
 
 inline double RandomDouble(double min, double max) {
     // Returns a random real in [min, max)
-    return min + (max - min) * RandomDouble();
+    if (min < max) {
+        return min + (max - min) * RandomDouble();
+    } else {
+        throw std::invalid_argument("min must be smaller than max");
+    }
 }
 
 inline double Clamp(double x, double min, double max) {

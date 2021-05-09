@@ -17,6 +17,7 @@ set(INCLUDE_DIRS
 #################
 
 set(LIB_FILES
+    lib/camera.cpp
     lib/hittablelist.cpp
     lib/ray.cpp
     lib/sphere.cpp

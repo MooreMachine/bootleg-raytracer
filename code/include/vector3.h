@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils.h"
+
 #include <ostream>
 
 class Vector3 {
@@ -23,6 +25,14 @@ public:
 
 	double Length() const;
 	double LengthSquared() const;
+
+    inline static Vector3 Random() {
+        return Vector3(RandomDouble(), RandomDouble(), RandomDouble());
+    }
+
+    inline static Vector3 Random(double min, double max) {
+        return Vector3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+    }
 };
 
 using Point3 = Vector3;
@@ -67,3 +77,5 @@ inline Vector3 UnitVector(const Vector3& v)
 {
 	return v / v.Length();
 }
+
+Vector3 RandomInUnitSphere();

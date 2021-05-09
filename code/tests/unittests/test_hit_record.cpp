@@ -7,7 +7,7 @@
 
 using namespace testing;
 
-class HitRecordTest : public ::testing::Test {
+class HitRecordTest : public Test {
 protected:
     HitRecord record;
     Vector3 ray_origin = Vector3(0, 0, 0);

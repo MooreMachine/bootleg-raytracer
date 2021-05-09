@@ -2,22 +2,18 @@
 
 #include "gmock/gmock.h"
 
+#include <stdexcept>
 #include <tuple>
 
 using namespace testing;
 
-class Vector3Test : public ::testing::Test {
+class Vector3Test : public Test {
 protected:
     Vector3 test_vector;
 
     void SetUp() override {
         test_vector = Vector3(1.0, 1.0, 1.0);
     }
-};
-
-class Vector3ParameterizedTest : public ::testing::TestWithParam<std::tuple<int, double>> {
-protected:
-    Vector3 param_test_vector {4.0, 5.0, 6.0 } ;
 };
 
 TEST_F(Vector3Test, OutOperatorWhenPassingAStreamAndVector3OutputsTheVector3Content) {
@@ -144,7 +140,12 @@ TEST_F(Vector3Test, LengthSquaredWhenNoParamsReturnsLengthSquaredValueOfTheVecto
     ASSERT_THAT(actualValue, expectedValue);
 }
 
-TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
+class Vector3BracketOperatorTest : public TestWithParam<std::tuple<int, double>> {
+protected:
+    Vector3 param_test_vector {4.0, 5.0, 6.0 } ;
+};
+
+TEST_P(Vector3BracketOperatorTest, BracketOperatorWhenPassingAnIndexReturnsDoubleInThatPosition) {
     int index = std::get<0>(GetParam());
     double expected_value = std::get<1>(GetParam());
 
@@ -153,7 +154,7 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleI
     ASSERT_EQ(actual_value, expected_value);
 }
 
-TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
+TEST_P(Vector3BracketOperatorTest, BracketOperatorWhenPassingAnIndexReturnsDoubleReferenceInThatPosition) {
     int index = std::get<0>(GetParam());
     double* expected_value = std::addressof(param_test_vector.e[index]);
 
@@ -163,10 +164,62 @@ TEST_P(Vector3ParameterizedTest, BracketOperatorWhenPassingAnIndexReturnsDoubleR
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    Vector3BracketOperators,
-    Vector3ParameterizedTest,
-    ::testing::Values(
-        std::make_tuple(0, 4.0), // first -> index, second -> value
+    Vector3BracketOperatorValueComparison,
+    Vector3BracketOperatorTest,
+    Values(
+        // first -> index, second -> value
+        std::make_tuple(0, 4.0),
         std::make_tuple(1, 5.0),
         std::make_tuple(2, 6.0)
+    ));
+
+class Vector3RandomTest : public TestWithParam<std::tuple<double, double>> {
+protected:
+    Vector3 vector_generator;
+};
+
+TEST(Vector3RandomTest, RandomWhenNoParametersReturnsVectorWithValuesFromMoreThanZeroUpToOne) {
+
+    auto result = Vector3::Random();
+
+    ASSERT_THAT(result.e, Each(AllOf(Ge(0), Lt(1))));
+}
+
+TEST(Vector3RandomTest, RandomWhenMinGreaterThanMaxThrowsError) {
+    auto min = 2;
+    auto max = 1;
+
+    ASSERT_THROW(Vector3::Random(min, max), std::invalid_argument);
+}
+
+TEST(Vector3RandomTest, RandomWhenMinLessThanMaxThrowsNoError) {
+    auto min = 1;
+    auto max = 2;
+
+    ASSERT_NO_THROW(Vector3::Random(min, max));
+}
+
+TEST(Vector3RandomTest, RandomInUnitSphereNoParametersVectorIsInsideUnitSphere) {
+    auto result = RandomInUnitSphere();
+
+    ASSERT_LT(result.LengthSquared(), 1);
+}
+
+TEST_P(Vector3RandomTest, RandomWhenPassingMinMaxParametersReturnsVectorWithinRange) {
+    auto min = std::get<0>(GetParam());
+    auto max = std::get<1>(GetParam());
+
+    auto result = vector_generator.Random(min, max);
+
+    ASSERT_THAT(result.e, Each(AllOf(Ge(min), Lt(max))));
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    Vector3RandomMinMaxTests,
+    Vector3RandomTest,
+    Values(
+        std::make_tuple(-2, -1),
+        std::make_tuple(1, 2),
+        std::make_tuple(10.5, 2000.1),
+        std::make_tuple(1, 10000000000)
     ));
