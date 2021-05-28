@@ -200,9 +200,18 @@ TEST(Vector3RandomTest, RandomWhenMinLessThanMaxThrowsNoError) {
 }
 
 TEST(Vector3RandomTest, RandomInUnitSphereNoParametersVectorIsInsideUnitSphere) {
-    auto result = RandomInUnitSphere();
+    bool isInsideSphere = true;
+    int numberOfTests = 1000;
 
-    ASSERT_LT(result.LengthSquared(), 1);
+    for (int i = 0; i < numberOfTests; i++) {
+        auto result = RandomInUnitSphere();
+        if (result.LengthSquared() >= 1) {
+            isInsideSphere = false;
+            break;
+        }
+    }
+
+    ASSERT_TRUE(isInsideSphere);
 }
 
 TEST_P(Vector3RandomTest, RandomWhenPassingMinMaxParametersReturnsVectorWithinRange) {

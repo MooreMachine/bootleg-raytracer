@@ -62,9 +62,11 @@ double Vector3::LengthSquared() const {
 }
 
 Vector3 RandomInUnitSphere() {
-	auto p = Vector3::Random(-1, 1);
-	while (p.LengthSquared() >= 1) {
-		p = Vector3::Random(-1, 1);
-	}
-	return p;
+    auto uniform_value = RandomDouble(0, 1);
+    auto radius = std::cbrt(uniform_value);
+    auto random_vector = Vector3::Random(-1, 1);
+
+    random_vector /= random_vector.Length();
+
+	return radius*random_vector;
 }
