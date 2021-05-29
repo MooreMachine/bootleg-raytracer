@@ -124,6 +124,14 @@ TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector) {
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
+TEST_F(Vector3Test, UnitVectorWhenVectorLengthIs0ReturnsAZeroVector) {
+    Vector3 expected_vector(0.0, 0.0, 0.0);
+
+    Vector3 actual_vector = UnitVector(Vector3(0.0, 0.0, 0.0));
+
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
+}
+
 TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared) {
     double expectedValue = std::sqrt(3.0);
 

@@ -75,7 +75,8 @@ inline Vector3 Cross(const Vector3& u, const Vector3& v)
 
 inline Vector3 UnitVector(const Vector3& v)
 {
-	return v / v.Length();
+    auto length = v.Length();
+    return length == 0 ? Vector3(0.0, 0.0, 0.0) : v / length;
 }
 
 Vector3 RandomInUnitSphere();
