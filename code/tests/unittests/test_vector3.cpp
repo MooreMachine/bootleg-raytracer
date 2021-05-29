@@ -124,6 +124,14 @@ TEST_F(Vector3Test, UnitVectorWhenPassingAVector3ReturnsItsUnitVector) {
     ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
 }
 
+TEST_F(Vector3Test, UnitVectorWhenVectorLengthIs0ReturnsAZeroVector) {
+    Vector3 expected_vector(0.0, 0.0, 0.0);
+
+    Vector3 actual_vector = UnitVector(Vector3(0.0, 0.0, 0.0));
+
+    ASSERT_THAT(actual_vector.e, ElementsAreArray(expected_vector.e));
+}
+
 TEST_F(Vector3Test, LengthWhenNoParamsReturnsSquareRootOfTheVectorsLengthSquared) {
     double expectedValue = std::sqrt(3.0);
 
@@ -200,9 +208,18 @@ TEST(Vector3RandomTest, RandomWhenMinLessThanMaxThrowsNoError) {
 }
 
 TEST(Vector3RandomTest, RandomInUnitSphereNoParametersVectorIsInsideUnitSphere) {
-    auto result = RandomInUnitSphere();
+    bool isInsideSphere = true;
+    int numberOfTests = 1000;
 
-    ASSERT_LT(result.LengthSquared(), 1);
+    for (int i = 0; i < numberOfTests; i++) {
+        auto result = RandomInUnitSphere();
+        if (result.LengthSquared() >= 1) {
+            isInsideSphere = false;
+            break;
+        }
+    }
+
+    ASSERT_TRUE(isInsideSphere);
 }
 
 TEST_P(Vector3RandomTest, RandomWhenPassingMinMaxParametersReturnsVectorWithinRange) {
