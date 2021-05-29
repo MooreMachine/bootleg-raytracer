@@ -62,11 +62,14 @@ double Vector3::LengthSquared() const {
 }
 
 Vector3 RandomInUnitSphere() {
+    // Normalized random vector
+    auto random_vector = UnitVector(Vector3::Random(-1, 1));
+
+    /* Spread uniform value across volume so that, over time random points
+     * don't cluster around the center of the sphere. */
     auto uniform_value = RandomDouble(0, 1);
     auto radius = std::cbrt(uniform_value);
-    auto random_vector = Vector3::Random(-1, 1);
 
-    random_vector /= random_vector.Length();
-
-	return radius*random_vector;
+    // Scale vector inside a unit sphere
+	return radius * random_vector;
 }
