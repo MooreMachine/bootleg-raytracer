@@ -13,6 +13,7 @@ set(TEST_FILES
     unittests/unit_tests.cpp
     unittests/test_camera.cpp
     unittests/test_color.cpp
+    unittests/test_half_b_quadratic_formula.cpp
     unittests/test_hit_record.cpp
     unittests/test_hittablelist.cpp
     unittests/test_ray.cpp
