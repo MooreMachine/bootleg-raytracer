@@ -44,7 +44,7 @@ echo "Running unit tests..."
 docker exec \
     -w '/home' \
     build_test \
-    sh -c './build/bin/raytracer_tests; echo "::set-output name=run_unit_tests_result::$?"'
+    sh -c './build/bin/raytracer_tests --gtest_color=yes; echo "::set-output name=run_unit_tests_result::$?"'
 
 echo "Stopping container..."
 
