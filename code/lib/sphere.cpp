@@ -16,16 +16,10 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
     auto formula = HalfBQuadraticFormula(a, h, c);
     const double discriminant = formula.getDiscriminant();
     if (!RayHitsObject(discriminant)) return false;
-    const double sqrt_discriminant = formula.getSqrtDiscriminant();
 
 	// Find the nearest root that lies in the acceptable range.
-    double root = (-h - sqrt_discriminant) / a;
-	if (root < t_min || t_max < root) {
-		root = (-h + sqrt_discriminant) / a;
-		if (root < t_min || t_max < root) {
-			return false;
-		}
-	}
+    double root{};
+    if (!formula.NearestRootInRange(t_min, t_max, root)) return false;
 
 	record.t = root;
 	record.p = ray.At(record.t);

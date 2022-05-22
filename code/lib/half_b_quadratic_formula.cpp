@@ -14,3 +14,22 @@ double HalfBQuadraticFormula::getSqrtDiscriminant() {
 
     return sqrt(discriminant);
 }
+
+bool HalfBQuadraticFormula::NearestRootInRange(double t_min, double t_max,double& root) {
+    root = Root1();
+    if (root < t_min || t_max < root) {
+        root = Root2();
+        if (root < t_min || t_max < root) {
+            return false;
+        }
+    }
+    return true;
+}
+
+double HalfBQuadraticFormula::Root1() {
+    return (-h - getSqrtDiscriminant()) / a;
+}
+
+double HalfBQuadraticFormula::Root2() {
+    return (-h + getSqrtDiscriminant()) / a;
+}
