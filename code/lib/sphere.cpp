@@ -1,4 +1,5 @@
 #include "sphere.h"
+#include "half_b_quadratic_formula.h"
 
 #include <cmath>
 
@@ -12,9 +13,10 @@ bool Sphere::Hit(const Ray& ray, double t_min, double t_max, HitRecord& record) 
     const double h = Dot(origin_center, ray.getDirection());
     const double c = origin_center.LengthSquared() - std::pow(radius, 2);
 	
-    const double discriminant = std::pow(h, 2) - (a * c);
+    auto formula = HalfBQuadraticFormula(a, h, c);
+    const double discriminant = formula.getDiscriminant();
     if (!RayHitsObject(discriminant)) return false;
-    const double sqrt_discriminant = sqrt(discriminant);
+    const double sqrt_discriminant = formula.getSqrtDiscriminant();
 
 	// Find the nearest root that lies in the acceptable range.
     double root = (-h - sqrt_discriminant) / a;
