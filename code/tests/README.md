@@ -38,3 +38,12 @@ record.ComputeFaceNormalDirection(ray, outward_normal);
 //Assert
 ASSERT_TRUE(record.front_face);
 ```
+
+## Building and running
+
+To run the tests using the interactive Docker container:
+
+1. Start the interactive container with the `run_interactive_container.sh` script.
+1. Build the unit tests with `build_unit_tests.sh`.
+1. Run the tests in `/build/bin/raytracer_tests`.
+1. You have to option to filter out tests using the `--gtest_filter=TestNameWildcard*` flag.
