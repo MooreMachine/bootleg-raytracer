@@ -6,21 +6,24 @@ using namespace testing;
 
 class QuadraticFormulaTest : public Test {
 protected:
-    void SetUp() override {
-        //qf = HalfBQuadraticFormula(0, 0, 0);
-    }
+    double a = 1;
+    double h = 1;
 };
 
 TEST_F(QuadraticFormulaTest, GetDiscriminant__ReturnsLessThan0){
-    auto qf = HalfBQuadraticFormula(0, 0, 0);
+    auto qf = HalfBQuadraticFormula(a, h, 2);
 
     ASSERT_LT(qf.getDiscriminant(), 0);
 }
 
 TEST_F(QuadraticFormulaTest, GetDiscriminant__ReturnsMoreThan0){
-    ASSERT_THAT(true, false);
+    auto qf = HalfBQuadraticFormula(a, h, 0);
+
+    ASSERT_GT(qf.getDiscriminant(), 0);
 }
 
 TEST_F(QuadraticFormulaTest, GetDiscriminant__Returns0){
-    ASSERT_THAT(true, false);
+    auto qf = HalfBQuadraticFormula(a, h, 1);
+
+    ASSERT_EQ(qf.getDiscriminant(), 0);
 }
