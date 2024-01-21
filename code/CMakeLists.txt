@@ -18,6 +18,7 @@ set(INCLUDE_DIRS
 
 set(LIB_FILES
     lib/camera.cpp
+    lib/half_b_quadratic_formula.cpp
     lib/hittablelist.cpp
     lib/ray.cpp
     lib/sphere.cpp

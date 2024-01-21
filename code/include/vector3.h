@@ -80,3 +80,7 @@ inline Vector3 UnitVector(const Vector3& v)
 }
 
 Vector3 RandomInUnitSphere();
+
+Vector3 RandomUnityVector();
+
+Vector3 RandomInHemisphere();
