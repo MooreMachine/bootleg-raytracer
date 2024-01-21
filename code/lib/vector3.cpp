@@ -73,3 +73,15 @@ Vector3 RandomInUnitSphere() {
     // Scale vector inside a unit sphere
 	return radius * random_vector;
 }
+
+Vector3 RandomUnitVector() {
+    return UnitVector(RandomInUnitSphere());
+}
+
+Vector3 RandomInHemisphere(const Vector3& normal) {
+    Vector3 on_unit_sphere = RandomInUnitSphere();
+    if (Dot(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+        return on_unit_sphere;
+    else
+        return -on_unit_sphere;
+}
